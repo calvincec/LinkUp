@@ -1,4 +1,4 @@
-# This is a social media site
+# LinkUp a social media site
 
 Am currently working on it
 
