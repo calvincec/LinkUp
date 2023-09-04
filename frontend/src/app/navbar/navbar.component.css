@@ -1,0 +1,106 @@
+.logouticon{
+    transform: rotate(180deg);
+}
+
+.icon{
+    stroke: white;
+    width: 40px;
+    height: 40px;
+}
+
+.navbar{
+    height: 100%;
+    position: fixed;
+    background-color: #202044;
+    color: white;
+    width: 20%;
+    display: block;
+    align-items: center;
+    border-right: 2px solid #000;
+}
+
+.linkuplogo{
+    width: 100%;  
+}
+.clicks{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    justify-content: space-between;
+    height: 40%;
+}
+.clicks>div, .account{
+    display: flex;
+    align-items: center;
+}
+.clicks>div>svg{
+    margin-right: 10%;
+}
+.account{
+    margin-top: 150px;
+    margin-left: 10%;
+}
+.account>svg{
+    margin-right: 10%;
+}
+
+@media screen and (max-width: 1100px) {
+    .accemail{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px) {
+    .clicks>div>p, .text, .linkuplogo{
+        display: none;
+    }
+    .navbar{
+        position: fixed ;
+        bottom: 0;
+        width: 100vw;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+    .clicks{
+        flex-direction: row;
+        width: 80%;
+        justify-content: space-between;
+    }
+    .account{
+        height: 100%;
+        margin-top: 0;
+        width: 20%;
+    }
+    .home{
+        order: 3;
+    }
+    .addpost{
+        order: 2;
+    }
+    .myposts{
+        order: 4;
+    }
+    .logout{
+        order: 1;
+    }
+}
+@media screen and (max-width: 337px) {
+    .icon{
+        height: 30px;
+        width: 30px;
+    }
+    .account{
+        margin: 20px;
+    }
+    .navbar{
+        height: 10%;
+    }
+}
+@media screen and (max-width: 255px) {
+    .account{
+        margin: 5px;
+    }
+}

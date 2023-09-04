@@ -1,0 +1,144 @@
+.login{
+    display: flex;
+    height: 100%;
+}
+.whitepage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+.logopage{
+    width: 50%;
+    background-color: #202044;
+    height: 100%;
+    color: #FF851B;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    margin-bottom: 100px;
+}
+.motto{
+    font-size: 36px;
+}
+.welcome{
+    font-size: 48px;
+    color: 202044;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+.inputs{
+    display: flex;
+    height: 40%;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    margin: 0 auto;
+}
+.inputs>input, .inputs>button{
+    width: 100%;
+    height: 61px;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: #755BB4;
+}
+.inputs>button{
+    background-color: #202044;
+    color: white;
+    font-size: 32px;
+}
+
+.fpassword{
+    margin: 3%;
+    font-size: 24px;
+}
+.dont{
+    font-size: 32px;
+}
+
+
+  @media screen and (max-width: 1095px) {
+    
+    .motto{
+        font-size:x-large;
+    }
+    .dont{
+        font-size: x-large;
+    }
+    .fpassword{
+        font-size: 18px;
+    }
+    .inputs{
+        width: 70%;
+    }
+    .inputs>input, .inputs>button{
+        height: 50px;
+    }
+    .logo>img{
+        width: 300px;
+    }
+  }
+  @media screen and (min-width: 1081px) {
+
+    .inputs>input{
+        height: 30px;
+    }
+    
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* mobile view */
+    .login{
+        flex-direction: column-reverse;
+        
+    }
+    .inputs>button{
+        font-size: 28px;
+    }
+    .logopage{
+        height: 100px;
+        background-color: white;
+        width: 100%;
+   
+    }
+    .logo{
+        height: 200px;
+    }
+    .whitepage{
+        width: 100%;
+        height: 80%;
+    }
+    .motto{
+        display: none;
+        
+    }
+    .logo>img{
+        align-self: center;
+        height: 200px;
+        width: 100%;
+        transform: translate(0,20%);
+        
+    }
+  }
+  @media screen and (max-width: 364px) {
+
+    .dont{
+        font-size: 14px;
+    }
+    .inputs>input{
+        height: 20px;
+    }
+    .welcome{
+        font-size: 32px;
+    }
+    .inputs>button{
+        font-size: 20px;
+    }
+  }

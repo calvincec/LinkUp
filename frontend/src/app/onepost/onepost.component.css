@@ -1,0 +1,89 @@
+.onepost{
+    
+    height: 100%;
+    color: white;
+}
+/* if width is scrollable, delete the margin-left from .onepostbody and uncomment from header and .postbody */
+.onepostbody{
+    height: 100%;
+    background-color: rgb(36, 13, 100);
+    margin-left: 20.1%;
+}
+.header{
+    background-color: red;
+    font-size: 36px;
+    /* margin-left: 20.1%; */
+}
+.postbody{
+    /* margin-left: 20.1%; */
+    display: flex;
+    flex-wrap: nowrap;
+    padding-top: 10px;
+}
+
+.profilepicimgm{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.profilepic{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+.comments1, .comments2{
+    display: flex;
+}
+.profilepicimg1{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;   
+}
+.profilepicimg2{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px; 
+}
+.commenticon{
+    margin-right: 40%;
+}
+.likeicon1, .commenticon1{
+    width: 30px;
+}
+.likeicon2, .commenticon2{
+    width: 25px;
+}
+.comments2, .comments1{
+    width: 100%;
+}
+.profilepic2{
+    margin-right: 30px;
+}
+.newcomment{
+    width: 100%;
+    background-color: white;
+    height: 10%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    
+    /* height: 2%; */
+}
+.txt{
+    width: 50%;
+    margin-right: 30%;
+    /* border-radius: 10%; */
+    height: 90%;
+    border: 0;
+    padding-left: 10px;
+    margin-left: 2px;
+    
+}
+.cbtn{
+    width: 70px;
+    background-color: #202044;
+    color: white;
+    border-radius: 10px;
+    height: 50%;
+}
