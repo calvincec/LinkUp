@@ -9,6 +9,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PostsComponent } from './posts/posts.component';
 import { NewpostComponent } from './newpost/newpost.component';
 import { OnepostComponent } from './onepost/onepost.component';
+import { AccountprofileComponent } from './accountprofile/accountprofile.component';
+import { FollowersComponent } from './followers/followers.component';
+import { FollowingComponent } from './following/following.component';
+import { PeopleymkComponent } from './peopleymk/peopleymk.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { OnepostComponent } from './onepost/onepost.component';
     NavbarComponent,
     PostsComponent,
     NewpostComponent,
-    OnepostComponent
+    OnepostComponent,
+    AccountprofileComponent,
+    FollowersComponent,
+    FollowingComponent,
+    PeopleymkComponent
   ],
   imports: [
     BrowserModule,

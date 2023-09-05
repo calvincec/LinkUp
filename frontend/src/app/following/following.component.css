@@ -1,0 +1,22 @@
+.people{
+    margin-top: 5px;
+}
+.person{
+    display: flex;
+    /* border-bottom: solid black; */
+    margin-bottom: 20px;
+}
+.profilepic{
+    margin-right: 5px;
+    width: 70px;
+    margin-left: 5px;
+}
+.profilepicimg{
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+.name{
+    font-size: 20px;
+    padding: 0;
+}

@@ -80,7 +80,13 @@
     justify-content: space-between;
     flex-wrap: nowrap; */
 }
-
+svg:hover{
+    stroke: #FF851B !important;
+    cursor: pointer;
+    color: #FF851B !important;
+    fill: #FF851B !important;
+    /* background-color: #FF851B !important; */
+}
 
 
 @media screen and (max-width: 768px) {

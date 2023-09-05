@@ -1,21 +1,17 @@
 .onepost{
-    
-    height: 100%;
     color: white;
 }
 /* if width is scrollable, delete the margin-left from .onepostbody and uncomment from header and .postbody */
 .onepostbody{
     height: 100%;
-    background-color: rgb(36, 13, 100);
+    /* background-color: rgb(36, 13, 100); */
     margin-left: 20.1%;
 }
 .header{
-    background-color: red;
     font-size: 36px;
-    /* margin-left: 20.1%; */
+    border-bottom: solid black;
 }
 .postbody{
-    /* margin-left: 20.1%; */
     display: flex;
     flex-wrap: nowrap;
     padding-top: 10px;
@@ -33,6 +29,7 @@
 }
 .comments1, .comments2{
     display: flex;
+    
 }
 .profilepicimg1{
     border-radius: 50%;
@@ -59,25 +56,28 @@
 .profilepic2{
     margin-right: 30px;
 }
+
 .newcomment{
     width: 100%;
     background-color: white;
-    height: 10%;
     margin-bottom: 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    
-    /* height: 2%; */
+}
+.newcommentm{
+    height: 60px;
+}
+.newcomment1{
+    height: 50px;
 }
 .txt{
     width: 50%;
     margin-right: 30%;
-    /* border-radius: 10%; */
     height: 90%;
     border: 0;
     padding-left: 10px;
-    margin-left: 2px;
+    margin-left: 4px;
     
 }
 .cbtn{
@@ -86,4 +86,86 @@
     color: white;
     border-radius: 10px;
     height: 50%;
+}
+.innercommentbody{
+    width: 80%;
+}
+
+.innerheader{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.elypsis{
+    margin-right: 5px;
+}
+.elypsis1{
+    height: 20px;
+    width: 20px;
+}
+.elypsis2{
+    height: 15px;
+    width: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    /* mobile view */
+    .onepostbody{
+        width: 100%;
+        margin-left: 0;
+        
+    }
+    .profilepicm, .profilepic1{
+        margin-right: 20px;
+    }
+    .newcommentm{
+        height: 50px;
+    }
+    .newcomment1{
+        height: 40px;
+    }
+    .header{
+        height: 30px;
+        font-size: 20px;
+    }   
+}
+@media screen and (max-width: 699px) {
+    .txt{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 660px) {
+    .txt{
+        width: 75%;
+    }
+    .cbtn{
+        margin-right: 10px;
+    }
+    .txt1{
+        font-size: 11px;
+    }
+    .profilepicimgm{
+        height: 40px;
+        width: 40px;
+    }
+}
+@media screen and (max-width: 382px) {
+    .profilepicm{
+        margin: 10px;
+    }
+    .profilepicimgm{
+        height: 35px;
+        width: 35px;
+    }
+}
+@media screen and (max-width: 290px) {
+    .txt1{
+        font-size: 10px;
+    }
+    .newcommentm{
+        height: 40px;
+    }
+    .newcomment1{
+        height: 35px;
+    }
 }

@@ -1,6 +1,7 @@
 .register{
     display: flex;
     height: 100%;
+    background-color: white;
 }
 .whitepage{
     display: flex;
@@ -50,16 +51,26 @@
     padding: 10px;
     border-radius: 10px;
     border-color: #755BB4;
+    outline: none;
 }
 .inputs>button{
     background-color: #202044;
     color: white;
     font-size: 32px;
+    border: 0;
+}
+.inputs>button:hover{
+    background-color: #FF851B;
 }
 
 .signinstead{
     margin: 3%;
     font-size: 24px;
+    cursor: pointer;
+}
+.signinstead:hover{
+    color:#FF851B !important;
+    cursor: pointer;
 }
 
 

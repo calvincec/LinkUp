@@ -1,0 +1,41 @@
+.people{
+    margin-top: 5px;
+}
+.person{
+    display: flex;
+    /* border-bottom: solid black; */
+    margin-bottom: 20px;
+    width: 100%;
+}
+.profilepic{
+    margin-right: 5px;
+    width: 70px;
+    margin-left: 5px;
+}
+.profilepicimg{
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+.nameymk{
+    /* font-size: 20px; */
+    padding: 0;
+    margin-right: 10%;
+}
+.followbtn{
+    background-color: #755BB4;
+    color: white;
+    padding: 4px;
+    border-radius: 10px;
+    /* margin-left: 70%; */
+}
+.innerheader{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    /* justify-content: space-between; */
+}
+.profilewords{
+    width: 100%;
+}
