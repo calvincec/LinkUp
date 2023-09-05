@@ -9,13 +9,13 @@ import { OnepostComponent } from './onepost/onepost.component';
 import { AccountprofileComponent } from './accountprofile/accountprofile.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent}, //login
+  {path: '', component: LoginComponent}, //login
   {path: 'register', component: RegisterComponent},
   {path: 'posts', component: PostsComponent} ,      //posts
   // {path: '', component: NavbarComponent},
   {path: 'newpost', component: NewpostComponent}, //newpost
   {path: 'onepost', component: OnepostComponent},  //onepost
-  {path: '', component: AccountprofileComponent}  //accountprofile
+  {path: 'accountprofile', component: AccountprofileComponent}  //accountprofile
 ];
 
 @NgModule({

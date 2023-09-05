@@ -1,10 +1,7 @@
 .newpost{
     background-color: #202044;
-    /* background-color: red; */
     height: 100%;
     color: white;
-    /* border: solid white; */
-    /* width: 80%; */
 }
 .postbody{
     /* width: 70%; */
@@ -31,11 +28,15 @@
     width: 60px;
     border-radius: 10%;
     margin-right: 10px;
+    border: 0;
+    outline: none;
 }
 .newpostimginput{
-    /* background-color: #202044; */
     color: white;
     margin-left: 10px;
+}
+.newpostimginput{
+    cursor: pointer;
 }
 .postwords{
     width: 100%;
@@ -54,6 +55,13 @@
 .header{
     border-bottom: solid black;
     margin-left: 20.5%;
+}
+textarea, input{
+    outline: none;
+}
+button:hover{
+    background-color: #FF851B;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -39,3 +39,7 @@
 .profilewords{
     width: 100%;
 }
+.followbtn:hover{
+    background-color: #FF851B;
+    cursor: pointer;
+}

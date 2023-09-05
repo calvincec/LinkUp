@@ -100,12 +100,27 @@
     margin-right: 5px;
 }
 .elypsis1{
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
 }
 .elypsis2{
-    height: 15px;
-    width: 15px;
+    height: 25px;
+    width: 25px;
+}
+svg:hover{
+    stroke: #FF851B;
+    fill: #FF851B;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #FF851B;
+}
+button{
+    outline: none;
+    border: 0;
+}
+input{
+    outline: none;
 }
 
 @media screen and (max-width: 768px) {

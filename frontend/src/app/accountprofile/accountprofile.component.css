@@ -46,6 +46,10 @@
 .search{
     outline: none;
 }
+.innernav>p:hover{
+    color: #FF851B;
+    cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
     /* mobile view */
