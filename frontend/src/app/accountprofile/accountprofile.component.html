@@ -19,18 +19,23 @@
         </div>
 
         <div class="innernav">
-            <p><span>188</span>  Followers</p>
-            <p><span>308</span> Following</p>
-            <p>People you may know</p>
+            <p (click)="followers()" [style.color]="txtcolor1"><span>188</span>  Followers</p>
+            <p (click)="following()" [style.color]="txtcolor2"><span>308</span> Following</p>
+            <p (click)="peopleymk()" [style.color]="txtcolor3">People you may know</p>
         </div>
-        <div class="contentbody">
+        
+        <div  class="contentbody">
 
-            <!-- <app-followers></app-followers> -->
-            <!-- <app-following></app-following> -->
-            <app-peopleymk></app-peopleymk>
-
-
-
+            <div *ngIf="choice == 'followers'">
+                <app-followers ></app-followers>
+            </div>
+            <div  *ngIf="choice == 'following'">
+                <app-following></app-following>
+            </div>
+            <div  *ngIf="choice == 'peopleymk'">
+                <app-peopleymk></app-peopleymk>
+            </div>
+       
 
         </div>
     </div>

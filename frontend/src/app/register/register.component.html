@@ -3,13 +3,16 @@
 
         <p class="welcome">Create an account</p>
         <p class="reginfo">Register to enjoy great moments with others</p>
-        <form action="" class="inputs">
-            <input type="text" name="name" id="name" placeholder="First Last">
-            <input type="text" name="email" id="emaill" placeholder="you@email.com">
-            <input type="password" name="password" id="passwordl" placeholder="Password">
+        <form class="inputs" [formGroup]="form"  (ngSubmit)="onSubmit(form)">
+            <div class="alertMsg" [style.color]="clr">
+                {{alertMsg}}
+            </div>
+            <input type="text" name="name" id="name" placeholder="First Last" formControlName="name">
+            <input type="email" name="email" id="emaill" placeholder="you@email.com" formControlName="email">
+            <input type="password" name="password" id="passwordl" placeholder="Password" formControlName="password">
             <button type="submit">Create Account</button>
         </form>
-        <p class="signinstead" style=" color: #755BB4;">Sign in instead</p>
+        <p class="signinstead" style=" color: #755BB4;" (click)="signup()">Sign in instead</p>
     </div>
 
     <div class="logopage">

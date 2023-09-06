@@ -9,12 +9,12 @@
             <img src="../assets/person.jpeg" alt="profile pic" class="profilepic">
             <form action="" class="newpostform">
                 <!-- <input type="text" name="" class="postwords"  placeholder="What’s on your mind??" > -->
-                <textarea name="" class="postwords" cols="30" rows="10" placeholder="What’s on your mind??" ></textarea>
-                <div class="postimage">
-    
+                <textarea name="" class="postwords"  placeholder="What’s on your mind??" ></textarea>
+                <div class="postimage" >
+                    <img [src]='image' alt="">
                 </div>
                 <div class="bottomform">
-                    <input type="file" name="" class="newpostimginput" >
+                    <input type="file" name="" class="newpostimginput"  (change)="pic($event)">
                     
                     <button type="submit" class="btn">Post</button>
                 </div>

@@ -13,6 +13,8 @@ import { AccountprofileComponent } from './accountprofile/accountprofile.compone
 import { FollowersComponent } from './followers/followers.component';
 import { FollowingComponent } from './following/following.component';
 import { PeopleymkComponent } from './peopleymk/peopleymk.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { PeopleymkComponent } from './peopleymk/peopleymk.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    // FormGroup
   ],
   providers: [],
   bootstrap: [AppComponent]

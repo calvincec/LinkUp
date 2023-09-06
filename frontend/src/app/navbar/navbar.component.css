@@ -44,6 +44,9 @@
 .account>svg{
     margin-right: 10%;
 }
+.clicks>div:hover, .account:hover{
+    cursor: pointer;
+}
 
 @media screen and (max-width: 1100px) {
     .accemail{

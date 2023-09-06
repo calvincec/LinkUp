@@ -51,6 +51,8 @@
     cursor: pointer;
 }
 
+
+
 @media screen and (max-width: 768px) {
     /* mobile view */
     .accountprofilebody{
