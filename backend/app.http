@@ -1,0 +1,33 @@
+###Register user
+POST http://localhost:4600/user/register
+Content-Type: application/json
+
+{
+    "profilepic": "cjejcjencc",
+    "bio": "bio",
+    "username": "calvince",
+    "email": "calyndemo35@gmail",
+    "password": "12345678"
+}
+
+###         LOG IN user
+POST http://localhost:4600/user/login
+Content-Type: application/json
+
+{
+    "email": "calyndemo30@gmail",
+    "password": "12345678"
+}
+
+### ## Updating user details
+PUT  http://localhost:4600/user/updateuser/6c0d520e-45f1-447e-8ecf-72038d34d550
+Content-Type: application/json
+
+{
+    "profilepic": "cjejcjencc",
+    "bio": "bio",
+    "username": "calvince",
+    "email": "calyndemo30@gmail"
+}
+
+###
