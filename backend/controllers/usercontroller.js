@@ -9,8 +9,17 @@ dotenv.config()
 
 const newuser = async(req,res)=>{
     try {
+        // let myvar = 'kj'
+        
+        // for (let i = 0; i<50; i++){
+        //     myvar+=' '
+        //     myvar+='word'
+        // }
+        // console.log(myvar);
+        // const bio = myvar
         const userid = v4()
         const {profilepic, bio, username, email, password} = req.body
+        
         const hashedPwd = await bcrypt.hash(password, 5)
         const pool  = await mssql.connect(sqlConfig)
         if(pool.connected){
@@ -41,6 +50,24 @@ const newuser = async(req,res)=>{
         if (error.code.includes('EPARAM')) {
             return res.status(400).json({ error: "Kindly input the correct parameters" });
         }
+        if (error.message.includes('truncated')) {
+            if (error.message.includes('bio')){
+                return res.status(400).json({ error: "Ensure the bio does not exceed 255 characters" });
+            }
+            if (error.message.includes('profilepic')){
+                return res.status(400).json({ error: "Ensure the profilepic link does not exceed 255 characters" });
+            }
+            if (error.message.includes('username')){
+                return res.status(400).json({ error: "Ensure the username does not exceed 255 characters" });
+            }
+            if (error.message.includes('email')){
+                return res.status(400).json({ error: "Ensure the email does not exceed 255 characters" });
+            }
+            if (error.message.includes('password')){
+                return res.status(400).json({ error: "Ensure the password does not exceed 20 characters" });
+            }
+          }
+        // return res.status(400).json({error: error})
         return res.status(500).json({ error: 'Internal server error' });
       }
     }      
@@ -67,7 +94,7 @@ const loginuser = async(req,res)=>{
                 })
             }
         }else{
-            return res.status(400).json({mesage: "Email does not exist"})
+            return res.status(400).json({mesage: "Email does not exist in our current records, consider registering"})
         }
         
     } catch (error) {
@@ -79,10 +106,9 @@ const updateuser = async(req,res)=>{
     
     try {
         const {profilepic, bio, username, email} = req.body
-        const userid = req.params
+        const userid = req.params.userid
         const pool  = await mssql.connect(sqlConfig)
         if(pool.connected){
-            
             const out = await pool.request()
             .input('userid', mssql.VarChar, userid)
             .input('profilepic', mssql.VarChar, profilepic)
@@ -90,25 +116,86 @@ const updateuser = async(req,res)=>{
             .input('username', mssql.VarChar, username)
             .input('email', mssql.VarChar, email)
             .execute('updateUserProc')
-
+            
+            
             if(out.rowsAffected==1){  
                 return res.status(200).json({
-                    message: "User registered successfully",
+                    message: "Details updated successfully",
                 })}
             else{
-                    return res.status(400).json({message: "User not registered successfully"})
+                    return res.status(400).json({message: "The user you have entered does not exist"})
             }
         }
+   
+    } catch (error) {
+        if (error.message.includes('Violation of UNIQUE KEY')) {
+            return res.status(404).json({ error: "There is a user who is using this email, kindly use another email or log in again" });
+        }
+        if (error.code.includes('EPARAM')) {
+            return res.status(404).json({ error: "Kindly input the correct parameters" });
+        }
+        if (error.message.includes('truncated')) {
+            if (error.message.includes('bio')){
+                return res.status(400).json({ error: "Ensure the bio does not exceed 255 characters" });
+            }
+            if (error.message.includes('profilepic')){
+                return res.status(400).json({ error: "Ensure the profilepic link does not exceed 255 characters" });
+            }
+            if (error.message.includes('username')){
+                return res.status(400).json({ error: "Ensure the username does not exceed 255 characters" });
+            }
+            if (error.message.includes('email')){
+                return res.status(400).json({ error: "Ensure the email does not exceed 255 characters" });
+            }
+        }
+        return res.status(500).json({ error: 'Internal server error' });
+        // return res.status(404).json({error})
+    }
+}
 
-        
+const otherUsers = async(req,res)=>{
+    try {
+        const userid = req.params.userid
+        const pool  = await mssql.connect(sqlConfig)
+        if(pool.connected){
+            const out = await pool.request()
+            .input('userid',userid)
+            .execute('otherUsersProc');
+            
+            const otherusers = out.recordset
+            return res.status(200).json({otherusers: otherusers})
+        }
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+const deleteUser = async(req,res)=>{
+    try {
+        const userid = req.params.userid
+        const pool  = await mssql.connect(sqlConfig)
+        const out = await pool.request()
+        .input('userid',userid)
+        .execute('deleteUserProc');
+
+        if(out.rowsAffected==1){  
+            return res.status(200).json({
+                message: "user deleted successfully",
+            })}
+        else{
+                return res.status(400).json({message: "The user you have entered does not exist"})
+        }
         
     } catch (error) {
         return res.status(404).json({error})
     }
 }
 
+
 module.exports = {
     newuser,
     loginuser,
-    updateuser
+    updateuser,
+    otherUsers,
+    deleteUser
 }

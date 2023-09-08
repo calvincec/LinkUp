@@ -3,31 +3,83 @@ POST http://localhost:4600/user/register
 Content-Type: application/json
 
 {
-    "profilepic": "cjejcjencc",
-    "bio": "bio",
-    "username": "calvince",
-    "email": "calyndemo35@gmail",
+    "profilepic": "kerario",
+    "bio": "biolog",
+    "username": "kerario",
+    "email": "kerar@gmail",
     "password": "12345678"
 }
+
 
 ###         LOG IN user
 POST http://localhost:4600/user/login
 Content-Type: application/json
 
 {
-    "email": "calyndemo30@gmail",
+    "email": "kerar@gmail",
     "password": "12345678"
 }
 
 ### ## Updating user details
-PUT  http://localhost:4600/user/updateuser/6c0d520e-45f1-447e-8ecf-72038d34d550
+PUT  http://localhost:4600/user/updateuser/23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e
 Content-Type: application/json
 
 {
-    "profilepic": "cjejcjencc",
-    "bio": "bio",
-    "username": "calvince",
-    "email": "calyndemo30@gmail"
+    "profilepic": "jemo pic",
+    "bio": "je",
+    "username": "james",
+    "email": "jemo6@gmail"  
 }
 
-###
+###Get all users except current user
+GET http://localhost:4600/user/otherusers/0e598b75-d50b-4840-b808-b883bef6bb4e
+
+###     SOFT DELETE USER
+PUT http://localhost:4600/user/delete/23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e 
+
+
+
+###POSTS ROUTES
+POST http://localhost:4600/post/new
+Content-Type: application/json
+
+{
+    "userid": "23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e",
+    "postwords": "rfdcdcdc",
+    "postpic": "lonk here"
+}
+
+### GET ALL POSTS
+GET http://localhost:4600/post/all
+
+### get current user's posts
+GET http://localhost:4600/post/currentuser/23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e
+
+### SOFT DELETE POST
+PUT http://localhost:4600/post/delete/13631a50-db16-4acf-bcd0-a3af4e0a9130
+Content-Type: application/json
+
+{
+
+}
+
+###UPDATE POST
+PUT  http://localhost:4600/post/update/13631a50-db16-4acf-bcd0-a3af4e0a9130
+Content-Type: application/json
+
+{
+    "postwords": "good name",
+    "postpic": "lonk here"
+}
+
+### ADD COMMENT
+POST http://localhost:4600/comment/new
+Content-Type: application/json
+
+{
+    "postid": "03c647b7-c565-4119-85ae-06d9abdf3a0b",
+    "commentbdy": "",
+    "userid": "",
+    "parentcomment": ""
+}
+

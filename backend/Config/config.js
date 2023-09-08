@@ -20,9 +20,9 @@ const sqlConfig = {
 }
 
 mssql.connect(sqlConfig).then(pool=>{
-    if(pool.connected){
-        console.log('connected to db');
-    }
+    // if(pool.connected){
+    //     console.log('database connection successfull');
+    // }
 })
 module.exports = {
     sqlConfig
