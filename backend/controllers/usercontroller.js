@@ -38,7 +38,7 @@ const newuser = async(req,res)=>{
                     message: "User registered successfully",
                 })}
             else{
-                    return res.status(400).json({message: "User not registered successfully"})
+                    return res.status(400).json({error: "User not registered successfully"})
             }
             
         }
@@ -47,9 +47,9 @@ const newuser = async(req,res)=>{
         if (error.message.includes('Violation of UNIQUE KEY')) {
           return res.status(400).json({ error: "The email you have entered exists, log in instead?" });
         }
-        if (error.code.includes('EPARAM')) {
-            return res.status(400).json({ error: "Kindly input the correct parameters" });
-        }
+        // if (error.code.includes('EPARAM')) {
+        //     return res.status(400).json({ error: "Kindly input the correct parameters" });
+        // }
         if (error.message.includes('truncated')) {
             if (error.message.includes('bio')){
                 return res.status(400).json({ error: "Ensure the bio does not exceed 255 characters" });
@@ -94,7 +94,7 @@ const loginuser = async(req,res)=>{
                 })
             }
         }else{
-            return res.status(400).json({mesage: "Email does not exist in our current records, consider registering"})
+            return res.status(400).json({error: "Email does not exist in our current records, consider registering"})
         }
         
     } catch (error) {
@@ -123,7 +123,7 @@ const updateuser = async(req,res)=>{
                     message: "Details updated successfully",
                 })}
             else{
-                    return res.status(400).json({message: "The user you have entered does not exist"})
+                    return res.status(400).json({error: "The user you have entered does not exist"})
             }
         }
    
@@ -131,9 +131,9 @@ const updateuser = async(req,res)=>{
         if (error.message.includes('Violation of UNIQUE KEY')) {
             return res.status(404).json({ error: "There is a user who is using this email, kindly use another email or log in again" });
         }
-        if (error.code.includes('EPARAM')) {
-            return res.status(404).json({ error: "Kindly input the correct parameters" });
-        }
+        // if (error.code.includes('EPARAM')) {
+        //     return res.status(404).json({ error: "Kindly input the correct parameters" });
+        // }
         if (error.message.includes('truncated')) {
             if (error.message.includes('bio')){
                 return res.status(400).json({ error: "Ensure the bio does not exceed 255 characters" });
@@ -178,12 +178,12 @@ const deleteUser = async(req,res)=>{
         .input('userid',userid)
         .execute('deleteUserProc');
 
-        if(out.rowsAffected==1){  
+        if(out.rowsAffected[0]>=1){  
             return res.status(200).json({
                 message: "user deleted successfully",
             })}
         else{
-                return res.status(400).json({message: "The user you have entered does not exist"})
+                return res.status(400).json({Error: "The user you have entered does not exist"})
         }
         
     } catch (error) {
@@ -191,11 +191,90 @@ const deleteUser = async(req,res)=>{
     }
 }
 
+const followUser = async (req,res)=>{
+    try {
+        const {userid, followerid} = req.body
+        const followid = v4()
+        const pool  = await mssql.connect(sqlConfig)
+        const out = await pool.request()
+        .input('followid', mssql.VarChar, followid)
+        .input('userid', mssql.VarChar, userid)
+        .input('followerid', mssql.VarChar, followerid)
+        .execute('followUserProc');
+
+        if(out.rowsAffected==1){  
+            return res.status(200).json({
+                message: "user followed",
+            })}
+        else{
+                return res.status(400).json({error: "user not followed"})
+        }
+
+    } catch (error) {
+        return res.status(404).json({error})
+    }
+}
+
+const userViewAllFollowers = async(req,res)=>{
+    try {
+        const userid = req.params.userid
+
+        const pool  = await mssql.connect(sqlConfig)
+        const out = await pool.request()
+        .input('userid', mssql.VarChar, userid)
+        .execute('userViewAllFollowersProc');
+
+        const followers = out.recordset
+
+        return res.status(200).json({followers: followers})
+
+
+        
+    } catch (error) {
+        return res.status(404).json({error})
+    }
+}
+
+const following = async(req,res)=>{
+    try {
+        const userid = req.params.userid
+
+        const pool  = await mssql.connect(sqlConfig)
+        const out = await pool.request()
+        .input('userid', mssql.VarChar, userid)
+        .execute('followingProc');
+
+        const following = out.recordset
+
+        return res.status(200).json({following: following})
+    } catch (error) {
+        return res.status(404).json({error})
+    }
+}
+
+const peopleymk = async(req, res)=>{
+    try {
+        const userid = req.params.userid
+
+        const pool  = await mssql.connect(sqlConfig)
+        const out = await pool.request()
+        .input('userid', mssql.VarChar, userid)
+        .execute('peopleymkProc');
+
+        const peopleymk = out.recordset
+
+        return res.status(200).json({peopleymk: peopleymk})
+    } catch (error) {
+        return res.status(404).json({error})
+    }
+}
+
 
 module.exports = {
-    newuser,
-    loginuser,
-    updateuser,
+    newuser, following,
+    loginuser, userViewAllFollowers,
+    updateuser, peopleymk,
     otherUsers,
-    deleteUser
+    deleteUser,
+    followUser
 }

@@ -3,10 +3,10 @@ POST http://localhost:4600/user/register
 Content-Type: application/json
 
 {
-    "profilepic": "kerario",
-    "bio": "biolog",
-    "username": "kerario",
-    "email": "kerar@gmail",
+    "profilepic": "Jose Bostn",
+    "bio": "its all about Bostn",
+    "username": "Jose Bost",
+    "email": "jose@gmail",
     "password": "12345678"
 }
 
@@ -16,12 +16,12 @@ POST http://localhost:4600/user/login
 Content-Type: application/json
 
 {
-    "email": "kerar@gmail",
+    "email": "jose@gmail",
     "password": "12345678"
 }
 
 ### ## Updating user details
-PUT  http://localhost:4600/user/updateuser/23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e
+PUT  http://localhost:4600/user/updateuser/4fdcbd87-9268-4008-99f3-65b1c56def2b
 Content-Type: application/json
 
 {
@@ -32,39 +32,53 @@ Content-Type: application/json
 }
 
 ###Get all users except current user
-GET http://localhost:4600/user/otherusers/0e598b75-d50b-4840-b808-b883bef6bb4e
+GET http://localhost:4600/user/otherusers/29240df3-01da-4dcd-92ac-c762b4b5c5b7
 
 ###     SOFT DELETE USER
-PUT http://localhost:4600/user/delete/23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e 
+PUT http://localhost:4600/user/delete/ef678716-511b-4d5b-a454-52407ade68d4
 
+###FOLLOW USER 
+### followerid is the current user while userid is the user to be followed
+POST http://localhost:4600/user/follow
+Content-Type: application/json
 
+{
+    "userid": "25423d12-440b-493d-bb78-7cc7385acef8",
+    "followerid": "88a27239-8633-439b-9d49-2460e9b22313"
+}
+
+###user view all followers
+GET  http://localhost:4600/user/allfollowers/25423d12-440b-493d-bb78-7cc7385acef8
+
+###user view all he/she follows
+GET  http://localhost:4600/user/following/88a27239-8633-439b-9d49-2460e9b22313
+
+###people the user might know
+GET  http://localhost:4600/user/peopleymk/88a27239-8633-439b-9d49-2460e9b22313
 
 ###POSTS ROUTES
 POST http://localhost:4600/post/new
 Content-Type: application/json
 
 {
-    "userid": "23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e",
-    "postwords": "rfdcdcdc",
-    "postpic": "lonk here"
+    "userid": "25423d12-440b-493d-bb78-7cc7385acef8",
+    "postwords": "wjhdwhdiw uji",
+    "postpic": "image.www.dw"
 }
 
 ### GET ALL POSTS
 GET http://localhost:4600/post/all
 
 ### get current user's posts
-GET http://localhost:4600/post/currentuser/23a64d8e-4ca9-47fa-9f6b-0cbb0c2f720e
+GET http://localhost:4600/post/currentuser/25423d12-440b-493d-bb78-7cc7385acef8
 
 ### SOFT DELETE POST
-PUT http://localhost:4600/post/delete/13631a50-db16-4acf-bcd0-a3af4e0a9130
+PUT http://localhost:4600/post/delete/f4067478-0ef0-4f9a-91b0-c0cb8ecc7f80
 Content-Type: application/json
 
-{
-
-}
 
 ###UPDATE POST
-PUT  http://localhost:4600/post/update/13631a50-db16-4acf-bcd0-a3af4e0a9130
+PUT  http://localhost:4600/post/update/20823bfd-e002-4ff7-83bb-601f81f58312
 Content-Type: application/json
 
 {
@@ -72,14 +86,57 @@ Content-Type: application/json
     "postpic": "lonk here"
 }
 
+###LIKE POST
+POST  http://localhost:4600/post/like
+Content-Type: application/json
+
+{
+    "postid": "20823bfd-e002-4ff7-83bb-601f81f58312",
+    "userid": "25423d12-440b-493d-bb78-7cc7385acef8"
+}
+
+
+###UNLIKE POST
+DELETE  http://localhost:4600/post/unlike/b518c935-d1e9-4902-8213-1c1dbc9d6652
+
+
+###GET ALL  LIKES FOR A POST
+GET http://localhost:4600/post/allikes/20823bfd-e002-4ff7-83bb-601f81f58312
+
+
 ### ADD COMMENT
 POST http://localhost:4600/comment/new
 Content-Type: application/json
 
 {
-    "postid": "03c647b7-c565-4119-85ae-06d9abdf3a0b",
-    "commentbdy": "",
-    "userid": "",
-    "parentcomment": ""
+    "postid": "20823bfd-e002-4ff7-83bb-601f81f58312",
+    "commentbdy": "blah blah blah",
+    "userid": "10946002-b550-4bea-b606-4bd67593e840",
+    "parentcomment": "6ce946ff-7734-462c-b9a9-db66bc3d44f2"
+    
 }
 
+###DELETE comment
+PUT http://localhost:4600/comment/delete/b518c935-d1e9-4902-8213-1c1dbc9d6652
+
+
+###GET COMMENTS BY POST OR COMMENT ID
+GET  http://localhost:4600/comment/pcid/NULL
+
+###LIKE COMMENT
+POST  http://localhost:4600/comment/like
+Content-Type: application/json
+
+{
+    "commentid": "f92ad269-01ac-447f-8db6-bf117c15f14b",
+    "userid": "25423d12-440b-493d-bb78-7cc7385acef8"
+}
+
+###UNLIKE COMMENT
+DELETE  http://localhost:4600/comment/unlike/df3be074-0e74-4579-a9af-f8c14f1325c7
+
+
+###GET ALL  LIKES FOR A COMMENT
+GET http://localhost:4600/comment/allikes/f92ad269-01ac-447f-8db6-bf117c15f14b
+
+  

@@ -73,7 +73,7 @@ const deletePost = async(req,res)=>{
         .input('postid', mssql.VarChar, postid)
         .execute('deletePostsProc'))
 
-        if(out.rowsAffected==1){  
+        if(out.rowsAffected[0]>=1){  
             return res.status(200).json({
                 message: "post deleted successfully",
             })}
@@ -111,10 +111,78 @@ const updatePost = async(req,res)=>{
     }
 }
 
+const likePost = async(req,res)=>{
+    try {
+        const {postid, userid} = req.body
+        const likeid = v4()
+        const pool  = await mssql.connect(sqlConfig)
+        let out = await pool.request()
+        .input('likeid', mssql.VarChar, likeid)
+        .input('postid', mssql.VarChar, postid)
+        .input('userid', mssql.VarChar, userid)
+        .execute('likePost')
+
+        if(out.rowsAffected==1){  
+            return res.status(200).json({
+                message: "post Liked successfully",
+            })}
+        else{
+                return res.status(400).json({message: "The post not liked"})
+        }
+
+    } catch (error) {
+        return res.status(404).json({Error:error}) 
+    }
+}
+
+const unlikePost = async(req,res)=>{
+    try {
+        const likeid = req.params.likeid
+
+        const pool  = await mssql.connect(sqlConfig)
+        let out = await pool.request()
+        .input('likeid', mssql.VarChar, likeid)
+        .execute('unlikePostProc')
+
+        if(out.rowsAffected==1){  
+            return res.status(200).json({
+                message: "post disLiked successfully",
+            })}
+        else{
+                return res.status(400).json({message: "The like is not found"})
+        }
+    } catch (error) {
+        return res.status(404).json({Error:error}) 
+    }
+}
+
+const allikesPost = async(req,res)=>{
+    try {
+        const postid = req.params.postid
+    
+        const pool  = await mssql.connect(sqlConfig)
+        let out = await pool.request()
+        .input('postid', mssql.VarChar, postid)
+        .execute('allikesPostProc')
+
+
+        console.log(out);
+        out = out.recordset[0].allikes
+       
+        return res.status(200).json({allPostLikes: out})
+
+    } catch (error) {
+        return res.status(404).json({Error:error}) 
+    }
+}
+
 module.exports = {
     newPost,
     getAllPosts,
     currentUserPost,
     deletePost,
-    updatePost
+    updatePost,
+    likePost,
+    unlikePost,
+    allikesPost
 }
