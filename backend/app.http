@@ -42,6 +42,7 @@ PUT http://localhost:4600/user/delete/ef678716-511b-4d5b-a454-52407ade68d4
 POST http://localhost:4600/user/follow
 Content-Type: application/json
 
+
 {
     "userid": "25423d12-440b-493d-bb78-7cc7385acef8",
     "followerid": "88a27239-8633-439b-9d49-2460e9b22313"
