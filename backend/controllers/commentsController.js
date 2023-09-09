@@ -26,7 +26,11 @@ const newComment = async(req,res)=>{
 
 
     } catch (error) {
-        return res.status(200).json({Error: error})
+        if (error.message.includes('FOREIGN KEY')) {
+            return res.status(404).json({error: "The user or post does not exist in the records"})
+        }
+        return res.status(500).json({ error: 'Internal server error' }); 
+        // return res.status(200).json({Error: error})
     }
 }
 
@@ -46,7 +50,7 @@ const deleteComment = async(req, res)=>{
             return res.status(400).json({error: "Comment not found"})
         }
     } catch (error) {
-        return res.status(200).json({Error: error})
+        return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
@@ -63,7 +67,7 @@ const getComment = async(req,res)=>{
 
 
     } catch (error) {
-        return res.status(200).json({Error: error})
+        return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
@@ -83,11 +87,11 @@ const likeComment = async(req,res)=>{
                 message: "comment Liked successfully",
             })}
         else{
-                return res.status(400).json({message: "The comment is not liked"})
+            return res.status(400).json({message: "The user is not found"})
         }
 
     } catch (error) {
-        return res.status(404).json({Error:error}) 
+        return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
@@ -108,7 +112,7 @@ const unlikeComment = async(req,res)=>{
                 return res.status(400).json({message: "The like is not found"})
         }
     } catch (error) {
-        return res.status(404).json({Error:error}) 
+        return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
@@ -122,8 +126,6 @@ const allikesComment = async(req,res)=>{
         .execute('allikesCommentProc')
 
   
-        console.log(out); 
-
 
         out = out.recordset[0].allikes
        

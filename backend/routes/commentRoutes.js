@@ -10,7 +10,7 @@ commentRouter.put('/delete/:commentid', deleteComment)
 commentRouter.get('/pcid/:id', getComment)
 commentRouter.post('/like', likeComment)
 commentRouter.delete('/unlike/:likeid', unlikeComment)
-commentRouter.get('/allikes/:postid', allikesComment)
+commentRouter.get('/allikes/:commentid', allikesComment)
 
 
 

@@ -20,7 +20,7 @@ const newPost = async(req,res)=>{
                 message: "post added successfully",
             })}
         else{
-                return res.status(400).json({message: "post not added successfully"})
+                return res.status(400).json({message: "The user does not exist in our records"})
         }
 
     } catch (error) {
@@ -82,8 +82,8 @@ const deletePost = async(req,res)=>{
         }
 
     } catch (error) {
-        // return res.status(500).json({ error: 'Internal server error' });
-        return res.status(404).json({Error:error}) 
+        return res.status(500).json({ error: 'Internal server error' });
+        // return res.status(404).json({Error:error}) 
     }
 }
 const updatePost = async(req,res)=>{
@@ -102,12 +102,13 @@ const updatePost = async(req,res)=>{
                 message: "post updated successfully",
             })}
         else{
-                return res.status(400).json({message: "The post does not exist"})
+                return res.status(400).json({error: "The post does not exist"})
         }
 
         
     } catch (error) {
-        return res.status(404).json({Error:error}) 
+        // return res.status(404).json({Error:error}) 
+        return res.status(500).json({ error: 'Internal server error' });
     }
 }
 
@@ -122,16 +123,20 @@ const likePost = async(req,res)=>{
         .input('userid', mssql.VarChar, userid)
         .execute('likePost')
 
-        if(out.rowsAffected==1){  
+        if(out.rowsAffected>=1){  
             return res.status(200).json({
                 message: "post Liked successfully",
             })}
         else{
-                return res.status(400).json({message: "The post not liked"})
+                return res.status(400).json({message: "The user does not exist"})
         }
 
     } catch (error) {
-        return res.status(404).json({Error:error}) 
+        if (error.message.includes('FOREIGN KEY')) {
+            return res.status(404).json({error: "The user or post does not exist in the records"})
+        }
+        // return res.status(404).json({Error:error})
+        return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
@@ -152,7 +157,7 @@ const unlikePost = async(req,res)=>{
                 return res.status(400).json({message: "The like is not found"})
         }
     } catch (error) {
-        return res.status(404).json({Error:error}) 
+        return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
@@ -166,7 +171,6 @@ const allikesPost = async(req,res)=>{
         .execute('allikesPostProc')
 
 
-        console.log(out);
         out = out.recordset[0].allikes
        
         return res.status(200).json({allPostLikes: out})

@@ -211,7 +211,10 @@ const followUser = async (req,res)=>{
         }
 
     } catch (error) {
-        return res.status(404).json({error})
+        if (error.message.includes('FOREIGN KEY')) {
+            return res.status(404).json({error: "The user does not exist in the records"})
+        }
+        return res.status(500).json({ error: 'Internal server error' });
     }
 }
 
