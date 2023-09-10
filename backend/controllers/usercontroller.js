@@ -4,7 +4,11 @@ const { sqlConfig } = require('../Config/config');
 const {v4} = require('uuid')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const { newuserValidator } = require('../Validators/userValidator');
+const { loginuserValidator } = require('../Validators/userValidator');
+const { updateuserValidator } = require('../Validators/userValidator');
+const { followuserValidator } = require('../Validators/userValidator');
 dotenv.config()
 
 const newuser = async(req,res)=>{
@@ -20,6 +24,11 @@ const newuser = async(req,res)=>{
         const userid = v4()
         const {profilepic, bio, username, email, password} = req.body
         
+        const {error}=newuserValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
         const hashedPwd = await bcrypt.hash(password, 5)
         const pool  = await mssql.connect(sqlConfig)
         if(pool.connected){
@@ -74,6 +83,12 @@ const newuser = async(req,res)=>{
 const loginuser = async(req,res)=>{
     try {
         const {email, password} = req.body
+
+        const {error}=loginuserValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
         const pool  = await mssql.connect(sqlConfig)
         const user = (await pool.request().input('email', mssql.VarChar, email).execute('userLogin')).recordset[0]
         
@@ -105,7 +120,13 @@ const loginuser = async(req,res)=>{
 const updateuser = async(req,res)=>{
     
     try {
-        const {profilepic, bio, username, email} = req.body
+        const { username, email, bio, profilepic} = req.body
+
+        const {error}=updateuserValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
         const userid = req.params.userid
         const pool  = await mssql.connect(sqlConfig)
         if(pool.connected){
@@ -194,6 +215,12 @@ const deleteUser = async(req,res)=>{
 const followUser = async (req,res)=>{
     try {
         const {userid, followerid} = req.body
+
+        const {error}=followuserValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
         const followid = v4()
         const pool  = await mssql.connect(sqlConfig)
         const out = await pool.request()

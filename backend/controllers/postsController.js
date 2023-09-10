@@ -2,10 +2,19 @@
 const mssql = require('mssql');
 const {v4} = require('uuid');
 const { sqlConfig } = require('../Config/config');
+const { newPostValidator } = require('../Validators/userValidator');
+const { updatePostValidator } = require('../Validators/userValidator');
+const { likePostValidator } = require('../Validators/userValidator');
 
 const newPost = async(req,res)=>{
     try {
         const { userid, postwords, postpic} = req.body
+
+        const {error}=newPostValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
         const postid = v4()
         const pool  = await mssql.connect(sqlConfig)
         const out = await pool.request()
@@ -90,6 +99,12 @@ const updatePost = async(req,res)=>{
     try {
         const postid = req.params.postid
         const{postwords, postpic} = req.body
+
+        const {error}=updatePostValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
         const pool  = await mssql.connect(sqlConfig)
         let out = await (pool.request()
         .input('postpic', mssql.VarChar, postpic)
@@ -115,6 +130,7 @@ const updatePost = async(req,res)=>{
 const likePost = async(req,res)=>{
     try {
         const {postid, userid} = req.body
+
         const likeid = v4()
         const pool  = await mssql.connect(sqlConfig)
         let out = await pool.request()

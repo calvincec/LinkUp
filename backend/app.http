@@ -6,7 +6,7 @@ Content-Type: application/json
     "profilepic": "6 Bostn",
     "bio": "its all about Bostn",
     "username": "Jose Bost",
-    "email": "jose6@gmail",
+    "email": "jose6@gmail.com",
     "password": "12345678"
 }
 
@@ -16,23 +16,25 @@ POST http://localhost:4600/user/login
 Content-Type: application/json
 
 {
-    "email": "jose@gmail",
+    "email": "jose6@gmail.com",
     "password": "12345678"
 }
 
 ### ## Updating user details
-PUT  http://localhost:4600/user/updateuser/4fdcbd87-9268-4008-99f3-65b1c56def2b
+PUT  http://localhost:4600/user/updateuser/f5edb98b-9e33-4689-8380-b01215280287
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQzNjU5NjIsImV4cCI6MTY5NDQwMTk2Mn0.L0lxl1_3j8bXCrQV2N1oloYaLFMnHTA_0xYL_bXEM38
 
 {
-    "profilepic": "jemo pic",
-    "bio": "je",
     "username": "james",
-    "email": "jemo6@gmail"  
+    "email": "jemo6gmail@gmail.com",
+    "profilepic": "jemo pic",
+    "bio": "je"
 }
 
 ###Get all users except current user
 GET http://localhost:4600/user/otherusers/29240df3-01da-4dcd-92ac-c762b4b5c5b7
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQzNjU5NjIsImV4cCI6MTY5NDQwMTk2Mn0.L0lxl1_3j8bXCrQV2N1oloYaLFMnHTA_0xYL_bXEM38
 
 ###     SOFT DELETE USER
 PUT http://localhost:4600/user/delete/6fb21f95-b2d4-40e1-8179-b919448cb86c

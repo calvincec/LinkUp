@@ -2,10 +2,13 @@ const mssql = require('mssql');
 const {v4} = require('uuid');
 const { sqlConfig } = require('../Config/config');
 
+
 const newComment = async(req,res)=>{
     try {
         const commentid = v4()
         const {postid, commentbdy, userid, parentcomment} = req.body
+
+        
 
         const pool  = await mssql.connect(sqlConfig)
         const out = await pool.request()
