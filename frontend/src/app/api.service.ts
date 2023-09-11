@@ -24,4 +24,8 @@ export class ApiService {
   RegisterService(details: credentials){
     return this.http.post('http://localhost:4600/user/register', details)
   }
+
+  AllPostsService(){
+    return this.http.get('http://localhost:4600/post/all')
+  }
 }
