@@ -105,7 +105,7 @@ const loginuser = async(req,res)=>{
                 })
             }else{
                 return res.status(400).json({
-                    message: 'Wrong password'
+                    error: 'Wrong password'
                 })
             }
         }else{

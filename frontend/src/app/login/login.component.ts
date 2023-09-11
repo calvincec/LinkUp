@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { ApiService } from '../api.service';
+import { ApiService } from '../api.service';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 // import { ApiService } from '../api.service';
 
 // used reactive forms like as explained in https://www.digitalocean.com/community/tutorials/angular-reactive-forms-introduction
@@ -17,8 +19,9 @@ export class LoginComponent implements OnInit{
   form!: FormGroup;
   alertMsg = ''
 
-  constructor(private router: Router) {}
-    
+
+
+  constructor(private router: Router, private api:ApiService) {}
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,24 +30,66 @@ export class LoginComponent implements OnInit{
   }
 
 
-  
+
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('password', form.value.password);
-    console.log('Email', form.value.email);
+    // console.log('Valid?', form.valid); // true or false
+    // console.log('password', form.value.password);
+    // console.log('Email', form.value.email);
     if(form.valid){
       //proceed to posts
-      this.clr = 'black'
-      this.alertMsg = 'Logged in successfully'
+      // console.log('form value', this.form.value);
 
-      setTimeout(() => {
-        this.alertMsg = ''
-        this.clr = 'red'
-        this.router.navigate(['/posts']);
-      }, 2000);
-      
-    
-      form.reset()
+      this.api.LoginService(this.form.value)
+      .pipe(
+        catchError((error) => {
+          let problems = error.error.error
+          // console.log(problems);
+
+          if(problems){
+            if (problems.includes('pattern')){
+              // console.log("Invalid Credentials");
+              this.alertMsg = "Invalid Credentials"
+              setTimeout(() => {
+                this.alertMsg=''
+              }, 3000);
+
+            }else{
+              this.alertMsg = problems
+              setTimeout(() => {
+                this.alertMsg=''
+              }, 3000);
+              // console.log( error.error.error);
+            }
+          }
+          else{
+            problems = error.error;
+          }
+          console.clear()
+          return throwError(problems);
+        })
+      )
+      .subscribe(res=>{
+        if((res as any).message){
+          this.clr = 'green'
+          this.alertMsg = (res as any).message
+          const token  = (res as any).token
+          // console.log(token);
+          localStorage.clear()
+          localStorage.setItem('token', token)
+
+
+          setTimeout(() => {
+            this.alertMsg=''
+            this.clr = 'red'
+            form.reset()
+            this.router.navigate(['/posts']);
+          }, 3000);
+        }else{
+          this.alertMsg = 'Invalid Credentials'
+        }
+
+      })
+
     }
     else{
       if(form.value.password==''){

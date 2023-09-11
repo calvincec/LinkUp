@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ApiService } from '../api.service';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 import { Router } from '@angular/router';
 
@@ -15,10 +18,10 @@ export class RegisterComponent {
   clr = 'red'
   form!: FormGroup;
   alertMsg = ''
-  constructor(private router: Router) {}
+  constructor(private router: Router, private api:ApiService) {}
   ngOnInit() {
     this.form = new FormGroup({
-      name: new FormControl('',Validators.required),
+      username: new FormControl('',Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('',Validators.required),
     });
@@ -26,24 +29,63 @@ export class RegisterComponent {
 
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('password', form.value.password);
-    console.log('Email', form.value.email);
-    console.log('name', form.value.name);
+    // console.log('Valid?', form.valid); // true or false
+    // console.log('password', form.value.password);
+    // console.log('Email', form.value.email);
+    // console.log('name', form.value.username);
     if(form.valid){
-      //proceed to register
-      this.clr = 'black'
-      this.alertMsg = 'successfully registered'
-
-      setTimeout(() => {
-        this.alertMsg = '';
-        this.clr = 'red'
-        this.router.navigate(['']);
-        
-      }, 2000);
+      // console.log(form.value);
       
-    
-      form.reset()
+      //proceed to register
+      this.api.RegisterService(this.form.value)
+      .pipe(
+        catchError((error) => {
+          let problems = error.error.error
+          // console.log(problems);
+
+          if(problems){
+            if (problems.includes('pattern')){
+              this.alertMsg = "Invalid Credentials"
+              setTimeout(() => {
+                this.alertMsg=''
+              }, 3000);
+
+            }else{
+              this.alertMsg = problems
+              setTimeout(() => {
+                this.alertMsg=''
+              }, 3000);
+              // console.log( error.error.error);
+            }
+          }
+          else{
+            problems = error.error;
+          }
+          console.clear()
+          return throwError(problems);
+        })
+      )
+      .subscribe(res=>{
+        if((res as any).message){
+          this.clr = 'green'
+          this.alertMsg = (res as any).message
+          // console.log(res as any);
+
+
+          setTimeout(() => {
+            this.alertMsg=''
+            this.clr = 'red'
+            form.reset()
+            this.router.navigate(['/']);
+          }, 3000);
+        }else{
+          this.alertMsg = 'Invalid Credentials'
+        }
+
+      })
+
+
+
     }else{
       if(form.value.password==''){
         this.alertMsg = 'Please enter your password'
@@ -57,7 +99,7 @@ export class RegisterComponent {
             this.alertMsg=''
           }, 2000);
         }else{
-          if(form.value.name==''){
+          if(form.value.username==''){
             this.alertMsg = 'Please your full names'
             setTimeout(() => {
               this.alertMsg=''

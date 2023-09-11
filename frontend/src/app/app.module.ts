@@ -14,6 +14,7 @@ import { FollowersComponent } from './followers/followers.component';
 import { FollowingComponent } from './following/following.component';
 import { PeopleymkComponent } from './peopleymk/peopleymk.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule
     // FormGroup
   ],
   providers: [],

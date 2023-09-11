@@ -17,12 +17,12 @@ const newuserValidator=joi.object({
     email:joi.string().required().lowercase().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
     bio:joi.string(),
     profilepic:joi.string(),
-    password:joi.string().required().pattern(new RegExp('^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};:\'"|,.<>?/~`]{8,}$'))
+    password:joi.string().required()
 
 }) 
 const loginuserValidator=joi.object({
     email:joi.string().required().lowercase().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
-    password:joi.string().required().pattern(new RegExp('^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};:\'"|,.<>?/~`]{8,}$'))
+    password:joi.string().required()
 })
 const followuserValidator=joi.object({
     userid:joi.string().required(),

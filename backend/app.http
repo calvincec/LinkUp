@@ -3,10 +3,10 @@ POST http://localhost:4600/user/register
 Content-Type: application/json
 
 {
-    "profilepic": "6 Bostn",
-    "bio": "its all about Bostn",
-    "username": "Jose Bost",
-    "email": "jose6@gmail.com",
+    "profilepic": "www.google.com",
+    "bio": "its all about calvince",
+    "username": "Calvince ndemo",
+    "email": "calvincec@gmail.com",
     "password": "12345678"
 }
 
@@ -21,68 +21,75 @@ Content-Type: application/json
 }
 
 ### ## Updating user details
-PUT  http://localhost:4600/user/updateuser/f5edb98b-9e33-4689-8380-b01215280287
+PUT  http://localhost:4600/user/updateuser/bc7fa4c4-0ab6-4e56-a732-574ba3a98325
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQzNjU5NjIsImV4cCI6MTY5NDQwMTk2Mn0.L0lxl1_3j8bXCrQV2N1oloYaLFMnHTA_0xYL_bXEM38
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
     "username": "james",
-    "email": "jemo6gmail@gmail.com",
+    "email": "jose90@gmail.com",
     "profilepic": "jemo pic",
     "bio": "je"
 }
 
 ###Get all users except current user
-GET http://localhost:4600/user/otherusers/29240df3-01da-4dcd-92ac-c762b4b5c5b7
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQzNjU5NjIsImV4cCI6MTY5NDQwMTk2Mn0.L0lxl1_3j8bXCrQV2N1oloYaLFMnHTA_0xYL_bXEM38
+GET http://localhost:4600/user/otherusers/62015153-c214-4c99-9f4a-108c7695f52c
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###     SOFT DELETE USER
-PUT http://localhost:4600/user/delete/6fb21f95-b2d4-40e1-8179-b919448cb86c
+PUT http://localhost:4600/user/delete/f5edb98b-9e33-4689-8380-b01215280287
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###FOLLOW USER 
 ### followerid is the current user while userid is the user to be followed
 POST http://localhost:4600/user/follow
 Content-Type: application/json
-
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
-    "userid": "66fef0c0-4cc4-426a-81e5-be20dda20341",
-    "followerid": "66fef0c0-4cc4-426a-81e5-be20dda20341"
+    "userid": "bff3e511-d724-4529-8488-dc47b3d53a24",
+    "followerid": "62015153-c214-4c99-9f4a-108c7695f52c"
 }
 
 ###user view all followers
-GET  http://localhost:4600/user/allfollowers/1827cb1f-f913-469e-bebe-fb010758a2b7
+GET  http://localhost:4600/user/allfollowers/bff3e511-d724-4529-8488-dc47b3d53a24
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###user view all he/she follows
-GET  http://localhost:4600/user/following/66fef0c0-4cc4-426a-81e5-be20dda20341
+GET  http://localhost:4600/user/following/62015153-c214-4c99-9f4a-108c7695f52c
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###people the user might know
 GET  http://localhost:4600/user/peopleymk/88a27239-8633-439b-9d49-2460e9b22313
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###POSTS ROUTES
 POST http://localhost:4600/post/new
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
-    "userid": "bc7fa4c4-0ab6-4e56-a732-574ba3a98325",
-    "postwords": "wjhdwhdiw uji",
-    "postpic": "image.www.dw"
+    "userid": "62015153-c214-4c99-9f4a-108c7695f52c",
+    "postwords": "hey there",
+    "postpic": "pic.jpg"
 }
 
 ### GET ALL POSTS
 GET http://localhost:4600/post/all
 
 ### get current user's posts
-GET http://localhost:4600/post/currentuser/6fb21f95-b2d4-40e1-8179-b919448cb86c
+GET http://localhost:4600/post/currentuser/bc7fa4c4-0ab6-4e56-a732-574ba3a98325
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ### SOFT DELETE POST
-PUT http://localhost:4600/post/delete/e2415764-351b-492f-b8fb-74f09ece3fb8
+PUT http://localhost:4600/post/delete/2931d7e6-3e87-4c2d-84b7-0b7e5cc8bca2
 Content-Type: application/json
-
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###UPDATE POST
-PUT  http://localhost:4600/post/update/e2415764-351b-492f-b8fb-74f09ece3fb8
+PUT  http://localhost:4600/post/update/0dfb8e3b-07e7-4707-b38a-fc109d22f615
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
     "postwords": "good name",
@@ -92,54 +99,58 @@ Content-Type: application/json
 ###LIKE POST
 POST  http://localhost:4600/post/like
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
     "postid": "0dfb8e3b-07e7-4707-b38a-fc109d22f615",
-    "userid": "6fb21f95-b2d4-40e1-8179-b919448cb86c"
+    "userid": "62015153-c214-4c99-9f4a-108c7695f52c"
 }
 
 
 ###UNLIKE POST
-DELETE  http://localhost:4600/post/unlike/20d3f023-46c8-4749-8c39-2bfcaed014a7
-
+DELETE  http://localhost:4600/post/unlike/83cbb100-d036-4384-97cb-78c979dfdc80
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###GET ALL  LIKES FOR A POST
 GET http://localhost:4600/post/allikes/0dfb8e3b-07e7-4707-b38a-fc109d22f615
-
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ### ADD COMMENT
 POST http://localhost:4600/comment/new
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
-    "postid": "0dfb8e3b-07e7-4707-b38a-fc109d22f615",
+    "postid": "474f33e1-339b-4ae2-81df-2cb948c254f4",
     "commentbdy": "blah blah blah",
-    "userid": "6fb21f95-b2d4-40e1-8179-b919448cb86c",
-    "parentcomment": "6ce946ff-7734-462c-b9a9-db66bc3d44f2"
+    "userid": "bff3e511-d724-4529-8488-dc47b3d53a24",
+    "parentcomment": "affada04-9f65-43a4-ab71-6151fb8c1799"
     
 }
 
 ###DELETE comment
-PUT http://localhost:4600/comment/delete/b5a62d92-f38d-40a3-8ae8-e4c7e277602d
-
+PUT http://localhost:4600/comment/delete/affada04-9f65-43a4-ab71-6151fb8c1799
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###GET COMMENTS BY POST OR COMMENT ID
-GET  http://localhost:4600/comment/pcid/0dfb8e3b-07e7-4707-b38a-fc109d22f615
+GET  http://localhost:4600/comment/pcid/affada04-9f65-43a4-ab71-6151fb8c1799
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###LIKE COMMENT
 POST  http://localhost:4600/comment/like
 Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
     "commentid": "f17865a4-b1ae-4d8d-ae10-84923e97c0bf",
-    "userid": "f5edb98b-9e33-4689-8380-b01215280287"
+    "userid": "62015153-c214-4c99-9f4a-108c7695f52c"
 }
 
 ###UNLIKE COMMENT
-DELETE  http://localhost:4600/comment/unlike/bcf66610-4dea-4fa4-b70a-9c5fd0e7ccfb
-
+DELETE  http://localhost:4600/comment/unlike/932001c5-d0d2-4a85-9016-74e164391c27
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###GET ALL  LIKES FOR A COMMENT
 GET http://localhost:4600/comment/allikes/f17865a4-b1ae-4d8d-ae10-84923e97c0bf
-
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
   
