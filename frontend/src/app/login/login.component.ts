@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit{
       //proceed to posts
       // console.log('form value', this.form.value);
 
+      console.log(this.form.value);
+      
       this.api.LoginService(this.form.value)
       .pipe(
         catchError((error) => {

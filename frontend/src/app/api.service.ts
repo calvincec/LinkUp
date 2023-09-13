@@ -11,6 +11,10 @@ interface regcredentials {
   email: string
   password :string
 }
+interface postUserId{
+  userid: string
+  postid: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +28,7 @@ export class ApiService {
   headers = new HttpHeaders({
     'token': `${this.token}` // Assuming the token is a Bearer token
   });
+  userid = localStorage.getItem('userid')
 
   LoginService(details: credentials){
     return this.http.post('http://localhost:4600/user/login', details)
@@ -34,7 +39,9 @@ export class ApiService {
   }
 
   AllPostsService(){
-    return this.http.get('http://localhost:4600/post/all')
+    const userid = this.userid
+    
+    return this.http.get(`http://localhost:4600/post/all/${userid}`)
   }
   getOnePostService(postid: string){
     return this.http.get(`http://localhost:4600/post/one/${postid}`)
@@ -48,5 +55,11 @@ export class ApiService {
     const headers: any = this.headers
     
     return this.http.get('http://localhost:4600/user/tokencheck', { headers })
+  }
+  like(details: postUserId){
+    const headers: any = this.headers
+
+    return this.http.post('http://localhost:4600/post/like', details, { headers })
+
   }
 }

@@ -48,8 +48,10 @@ const newPost = async(req,res)=>{
 
 const getAllPosts = async(req, res)=>{
     try {
+        const userid = req.params.userid
         const pool  = await mssql.connect(sqlConfig)
         let out = await (pool.request()
+        .input('userid', mssql.VarChar, userid)
         .execute('getAllPostsProc'))
 
         out = out.recordset
@@ -152,51 +154,66 @@ const likePost = async(req,res)=>{
     try {
         const {postid, userid} = req.body
 
-        const likeid = v4()
         const pool  = await mssql.connect(sqlConfig)
-        let out = await pool.request()
-        .input('likeid', mssql.VarChar, likeid)
-        .input('postid', mssql.VarChar, postid)
-        .input('userid', mssql.VarChar, userid)
-        .execute('likePost')
 
-        if(out.rowsAffected>=1){  
+        
+        let connection = await pool.request()
+        .input('userid', mssql.VarChar, userid)
+        .input('postid', mssql.VarChar, postid)
+        .execute('unlikePostProc')
+        if(connection.rowsAffected==1){  
             return res.status(200).json({
-                message: "post Liked successfully",
-            })}
+                likeid: [],
+        })}
         else{
-                return res.status(400).json({message: "The user does not exist"})
+            const likeid = v4()
+        
+            let out = await pool.request()
+            .input('likeid', mssql.VarChar, likeid)
+            .input('postid', mssql.VarChar, postid)
+            .input('userid', mssql.VarChar, userid)
+            .execute('likePost')
+
+            if(out.rowsAffected>=1){  
+                return res.status(200).json({
+                    likeid: [likeid],
+                })}
+            else{
+                    return res.status(400).json({message: "The user or post does not exist"})
+            }
         }
+
+        
 
     } catch (error) {
         if (error.message.includes('FOREIGN KEY')) {
             return res.status(404).json({error: "The user or post does not exist in the records"})
         }
-        // return res.status(404).json({Error:error})
-        return res.status(500).json({ error: 'Internal server error' }); 
+        return res.status(404).json({Error:error})
+        // return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
 
-const unlikePost = async(req,res)=>{
-    try {
-        const likeid = req.params.likeid
+// const unlikePost = async(req,res)=>{
+//     try {
+//         const likeid = req.params.likeid
 
-        const pool  = await mssql.connect(sqlConfig)
-        let out = await pool.request()
-        .input('likeid', mssql.VarChar, likeid)
-        .execute('unlikePostProc')
+//         const pool  = await mssql.connect(sqlConfig)
+//         let out = await pool.request()
+//         .input('likeid', mssql.VarChar, likeid)
+//         .execute('unlikePostProc')
 
-        if(out.rowsAffected==1){  
-            return res.status(200).json({
-                message: "post disLiked successfully",
-            })}
-        else{
-                return res.status(400).json({message: "The like is not found"})
-        }
-    } catch (error) {
-        return res.status(500).json({ error: 'Internal server error' }); 
-    }
-}
+//         if(out.rowsAffected==1){  
+//             return res.status(200).json({
+//                 message: "post disLiked successfully",
+//             })}
+//         else{
+//                 return res.status(400).json({message: "The like is not found"})
+//         }
+//     } catch (error) {
+//         return res.status(500).json({ error: 'Internal server error' }); 
+//     }
+// }
 
 const allikesPost = async(req,res)=>{
     try {
@@ -224,7 +241,6 @@ module.exports = {
     deletePost,
     updatePost,
     likePost,
-    unlikePost,
     allikesPost,
     getOnePost
 }

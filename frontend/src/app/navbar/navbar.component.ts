@@ -20,7 +20,7 @@ export class NavbarComponent {
   ngOnInit(): void {
     // Access the current route path
     const currentRoute = this.route.snapshot.url.join('/'); // e.g., '/home'
-    console.log('Current route:', currentRoute);
+    // console.log('Current route:', currentRoute);
     if(currentRoute=='posts'){
       this.homeicon='#FF851B' 
     }

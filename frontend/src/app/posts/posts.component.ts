@@ -14,8 +14,8 @@ OnepostComponent
 export class PostsComponent {
   posts: any[] = [];
 
-  color: string = 'red'
-  stroke: string = this.color
+  color: string = '#FF851B'
+  stroke: string = ''
   fill:string = this.color
 
   
@@ -24,15 +24,23 @@ export class PostsComponent {
       // console.log(res);
 
       if (res && res.allPosts) {
-        this.posts = res.allPosts;
+        
 
+        let index = 0
         res.allPosts.forEach((element: any) => {
-          //fetch the likes for the post
-          //check if user is in likes
-          //add a field, post is liked, use ngif to update stroke and fill
-          //add eventlistener to unlike the comment
-        });
+          // console.log(element);
 
+
+          element.fillColor = '';
+          console.log(element.curuserliked);
+          if(element.curuserliked!=null){
+            element.fillColor = '#FF851B'
+          }
+          
+          element.index = index
+          index++
+        });
+        this.posts = res.allPosts;
         console.log(this.posts);
         
       } else {
@@ -41,6 +49,40 @@ export class PostsComponent {
     });
   }
 
+
+
+  likeunlike(postid: string, index: any){
+    console.log(postid);
+    const userid = localStorage.getItem('userid')
+    const obj: any = {
+      userid : userid,
+      postid: postid
+    }
+    this.api.like(obj).subscribe((res: any)=>{
+      console.log(res.likeid);
+      
+      if(res.likeid){
+        if(res.likeid.length!=0){
+          console.log(res.likeid.length);
+          this.posts[index].fillColor = '#FF851B'
+          this.posts[index].likes++
+        }
+        else{
+          // console.log(res.likeid.length);
+          
+          this.posts[index].fillColor = ''
+          this.posts[index].likes--
+        }
+      }
+
+
+
+    })
+    
+    
+  }
+
+ 
 
   navtoOnepost(postid: any){
     console.log("item", postid);

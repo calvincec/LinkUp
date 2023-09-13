@@ -60,8 +60,10 @@ const deleteComment = async(req, res)=>{
 const getComment = async(req,res)=>{
     try {
         const id = req.params.id
+        const { userid } = req.body
         const pool = await mssql.connect(sqlConfig)
         const out = await pool.request()
+        .input('userid', mssql.VarChar, userid)
         .input('id', mssql.VarChar, id)
         .execute('getCommentPcidProc')
 
@@ -77,47 +79,65 @@ const getComment = async(req,res)=>{
 const likeComment = async(req,res)=>{
     try {
         const {commentid, userid} = req.body
-        const likeid = v4()
+        
         const pool  = await mssql.connect(sqlConfig)
-        let out = await pool.request()
-        .input('likeid', mssql.VarChar, likeid)
-        .input('commentid', mssql.VarChar, commentid)
+
+
+        let connection = await pool.request()
         .input('userid', mssql.VarChar, userid)
-        .execute('likeComment')
-
-        if(out.rowsAffected==1){  
-            return res.status(200).json({
-                message: "comment Liked successfully",
-            })}
-        else{
-            return res.status(400).json({message: "The user is not found"})
-        }
-
-    } catch (error) {
-        return res.status(500).json({ error: 'Internal server error' }); 
-    }
-}
-
-const unlikeComment = async(req,res)=>{
-    try {
-        const likeid = req.params.likeid
-
-        const pool  = await mssql.connect(sqlConfig)
-        let out = await pool.request()
-        .input('likeid', mssql.VarChar, likeid)
+        .input('commentid', mssql.VarChar, commentid)
         .execute('unlikeCommentProc')
-
-        if(out.rowsAffected==1){  
+        if(connection.rowsAffected==1){  
             return res.status(200).json({
-                message: "comment disLiked successfully",
-            })}
+                likeid: [],
+        })}
         else{
-                return res.status(400).json({message: "The like is not found"})
+            const likeid = v4()
+
+            let out = await pool.request()
+            .input('likeid', mssql.VarChar, likeid)
+            .input('commentid', mssql.VarChar, commentid)
+            .input('userid', mssql.VarChar, userid)
+            .execute('likeComment')
+
+            if(out.rowsAffected>=1){  
+                return res.status(200).json({
+                    likeid: [likeid],
+                })}
+            else{
+                    return res.status(400).json({message: "The user or comment does not exist"})
+            }
         }
+
+        
+
+        
     } catch (error) {
         return res.status(500).json({ error: 'Internal server error' }); 
+
     }
 }
+
+// const unlikeComment = async(req,res)=>{
+//     try {
+//         const likeid = req.params.likeid
+
+//         const pool  = await mssql.connect(sqlConfig)
+//         let out = await pool.request()
+//         .input('likeid', mssql.VarChar, likeid)
+//         .execute('unlikeCommentProc')
+
+//         if(out.rowsAffected==1){  
+//             return res.status(200).json({
+//                 message: "comment disLiked successfully",
+//             })}
+//         else{
+//                 return res.status(400).json({message: "The like is not found"})
+//         }
+//     } catch (error) {
+//         return res.status(500).json({ error: 'Internal server error' }); 
+//     }
+// }
 
 const allikesComment = async(req,res)=>{
     try {
@@ -144,6 +164,5 @@ module.exports = {
     deleteComment,
     allikesComment,
     getComment,
-    likeComment,
-    unlikeComment
+    likeComment
 }

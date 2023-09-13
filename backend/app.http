@@ -74,7 +74,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5
 }
 
 ### GET ALL POSTS
-GET http://localhost:4600/post/all
+GET http://localhost:4600/post/all/62c7c30c-05fa-45ab-9c2f-be40fcf42cff
 
 ###GET ONE POST BY POST ID
 GET http://localhost:4600/post/one/380f14f4-9ded-4706-871e-1d4b8237a3ad
@@ -98,24 +98,34 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
     "postpic": "https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/64/434378/1.jpg?0797"
 }
 
-###LIKE POST
+###LIKE POST OR UNlIke POST
 POST  http://localhost:4600/post/like
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ1MTk0NjcsImV4cCI6MTY5NDU1NTQ2N30.LdiGdq0zgKZrU2XJTpmvIVRTqWnjehM-k0c2Gb57AXo
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDU5NDc1OSwiZXhwIjoxNjk0NjMwNzU5fQ.j0uKFC8iOg5k6rMadhB_As_8sXJ8HNACI9djAemEUZc
 
 {
-    "postid": "380f14f4-9ded-4706-871e-1d4b8237a3ad",
+    "postid": "95e6541f-ef38-4f11-a2a6-8d375faf8d61",
     "userid": "62c7c30c-05fa-45ab-9c2f-be40fcf42cff"
 }
 
 
-###UNLIKE POST
-DELETE  http://localhost:4600/post/unlike/83cbb100-d036-4384-97cb-78c979dfdc80
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ1MjQxNDMsImV4cCI6MTY5NDU2MDE0M30.8PehlGeM1TWOCboVNqZ0a7dR4ou_Nm6cvtKX-7a11F4
+# ###UNLIKE POST
+# DELETE  http://localhost:4600/post/unlike/83cbb100-d036-4384-97cb-78c979dfdc80
+# token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ1MjQxNDMsImV4cCI6MTY5NDU2MDE0M30.8PehlGeM1TWOCboVNqZ0a7dR4ou_Nm6cvtKX-7a11F4
+# ##
 
 ###GET ALL  LIKES FOR A POST
 GET http://localhost:4600/post/allikes/0dfb8e3b-07e7-4707-b38a-fc109d22f615
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+
+###check if user liked the post and return likeid for the user
+# GET http://localhost:4600/post/userliked/62c7c30c-05fa-45ab-9c2f-be40fcf42cff
+# Content-Type: application/json
+
+# {
+#     "postid": "380f14f4-9ded-4706-871e-1d4b8237a3ad"
+# }
+####
 
 ### ADD COMMENT
 POST http://localhost:4600/comment/new
@@ -135,22 +145,27 @@ PUT http://localhost:4600/comment/delete/affada04-9f65-43a4-ab71-6151fb8c1799
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###GET COMMENTS BY POST OR COMMENT ID
-GET  http://localhost:4600/comment/pcid/380f14f4-9ded-4706-871e-1d4b8237a3ad
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
-
-###LIKE COMMENT
-POST  http://localhost:4600/comment/like
-Content-Type: application/json
+GET  http://localhost:4600/comment/pcid/f4f1ecfd-ae1d-4079-9c28-adc69d1e705b
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 {
-    "commentid": "f17865a4-b1ae-4d8d-ae10-84923e97c0bf",
-    "userid": "62015153-c214-4c99-9f4a-108c7695f52c"
+    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff"
 }
 
-###UNLIKE COMMENT
-DELETE  http://localhost:4600/comment/unlike/932001c5-d0d2-4a85-9016-74e164391c27
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+###LIKE OR UNLIKE COMMENT
+POST  http://localhost:4600/comment/like
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDU5NDc1OSwiZXhwIjoxNjk0NjMwNzU5fQ.j0uKFC8iOg5k6rMadhB_As_8sXJ8HNACI9djAemEUZc
+
+{
+    "commentid": "8fa6d123-9391-4e9e-b078-649849da3bb5",
+    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff"
+}
+
+# ###UNLIKE COMMENT
+# DELETE  http://localhost:4600/comment/unlike/932001c5-d0d2-4a85-9016-74e164391c27
+# token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+###
 
 ###GET ALL  LIKES FOR A COMMENT
 GET http://localhost:4600/comment/allikes/f17865a4-b1ae-4d8d-ae10-84923e97c0bf

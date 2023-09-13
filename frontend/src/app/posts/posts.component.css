@@ -85,7 +85,7 @@ svg:hover{
     stroke: #FF851B !important;
     cursor: pointer;
     color: #FF851B !important;
-    fill: #FF851B !important;
+    /* fill: #FF851B !important; */
     
 }
 
