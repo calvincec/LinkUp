@@ -42,6 +42,7 @@
 .postpic>img{
     border-radius: 10px;
     max-width: 70%;
+    max-height: 500px;
 }
 .commenticon{
     margin-right: 40%;
@@ -86,6 +87,11 @@ svg:hover{
     color: #FF851B !important;
     fill: #FF851B !important;
     
+}
+
+.postwords:hover, .postpic:hover{
+    cursor: pointer;
+    color: #FF851B;
 }
 
 

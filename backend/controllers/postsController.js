@@ -2,9 +2,12 @@
 const mssql = require('mssql');
 const {v4} = require('uuid');
 const { sqlConfig } = require('../Config/config');
-const { newPostValidator } = require('../Validators/userValidator');
-const { updatePostValidator } = require('../Validators/userValidator');
-const { likePostValidator } = require('../Validators/userValidator');
+const { newPostValidator, updatePostValidator } = require('../Validators/allValidator');
+// const { newPostValidator } = require('../Validators/userValidator');
+// const { updatePostValridator } = require('../Validators/userValidator');
+// const { likePostValidator } = require('../Validators/userValidator');
+
+
 
 const newPost = async(req,res)=>{
     try {
@@ -55,6 +58,24 @@ const getAllPosts = async(req, res)=>{
     } catch (error) {
         return res.status(500).json({ error: 'Internal server error' });
         // return res.status(404).json({Error:error})
+    }
+}
+
+const getOnePost = async (req,res)=>{
+    try {
+        const postid = req.params.postid
+        const pool  = await mssql.connect(sqlConfig)
+        let out = await (pool.request()
+        .input('postid', mssql.VarChar, postid)
+        .execute('getOnePostProc'))
+
+        out = out.recordset
+       
+        return res.status(200).json({onePost: out})
+
+    } catch (error) {
+        // return res.status(500).json({ error: 'Internal server error' });
+        return res.status(404).json({Error:error})
     }
 }
 
@@ -204,5 +225,6 @@ module.exports = {
     updatePost,
     likePost,
     unlikePost,
-    allikesPost
+    allikesPost,
+    getOnePost
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute, private location: Location) {}
   currentRoute = this.route.snapshot.url;
   defaultcolor = 'white'
   homeicon=this.defaultcolor
@@ -46,7 +47,10 @@ export class NavbarComponent {
     this.router.navigate(['accountprofile']);
   }
   logoutnav(){
+    localStorage.clear()
     this.router.navigate(['']);
+    this.location.replaceState('');
+    
   }
   
 }

@@ -7,6 +7,9 @@
     /* background-color: rgb(36, 13, 100); */
     margin-left: 20.1%;
 }
+.innerbody{
+    width: 100%;
+}
 .header{
     font-size: 36px;
     border-bottom: solid black;
@@ -121,6 +124,10 @@ button{
 }
 input{
     outline: none;
+}
+.postpic>img{
+    max-width: 90%;
+    max-height: 400px;
 }
 
 @media screen and (max-width: 768px) {

@@ -3,32 +3,32 @@ POST http://localhost:4600/user/register
 Content-Type: application/json
 
 {
-    "profilepic": "www.google.com",
-    "bio": "its all about calvince",
-    "username": "Calvince ndemo",
-    "email": "calvincec@gmail.com",
+    "profilepic": "https://images.pexels.com/photos/428333/pexels-photo-428333.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "bio": "The african guy",
+    "username": "Spenser selover",
+    "email": "kelchospec@gmail.com",
     "password": "12345678"
 }
-
+ 
 
 ###         LOG IN user
 POST http://localhost:4600/user/login
 Content-Type: application/json
 
 {
-    "email": "jose6@gmail.com",
+    "email": "calyndemo16@gmail.com",
     "password": "12345678"
 }
 
 ### ## Updating user details
-PUT  http://localhost:4600/user/updateuser/bc7fa4c4-0ab6-4e56-a732-574ba3a98325
+PUT  http://localhost:4600/user/updateuser/127b0227-57e0-415e-8f75-f1f81827b047
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5NDUzMzE5OX0.DFtnQxQG0_7Oij2s9uwme95QEdfvEukmakVS4k5n44A
 
 {
     "username": "james",
     "email": "jose90@gmail.com",
-    "profilepic": "jemo pic",
+    "profilepic": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=600",
     "bio": "je"
 }
 
@@ -66,16 +66,18 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 ###POSTS ROUTES
 POST http://localhost:4600/post/new
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5NDUzMzE5OX0.DFtnQxQG0_7Oij2s9uwme95QEdfvEukmakVS4k5n44A
 
 {
-    "userid": "62015153-c214-4c99-9f4a-108c7695f52c",
-    "postwords": "hey there",
-    "postpic": "pic.jpg"
+    "userid": "62c7c30c-05fa-45ab-9c2f-be40fcf42cff",
+    "postwords": "Hey bother benerd"
 }
 
 ### GET ALL POSTS
 GET http://localhost:4600/post/all
+
+###GET ONE POST BY POST ID
+GET http://localhost:4600/post/one/380f14f4-9ded-4706-871e-1d4b8237a3ad
 
 ### get current user's posts
 GET http://localhost:4600/post/currentuser/bc7fa4c4-0ab6-4e56-a732-574ba3a98325
@@ -93,23 +95,23 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 
 {
     "postwords": "good name",
-    "postpic": "lonk here"
+    "postpic": "https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/64/434378/1.jpg?0797"
 }
 
 ###LIKE POST
 POST  http://localhost:4600/post/like
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ1MTk0NjcsImV4cCI6MTY5NDU1NTQ2N30.LdiGdq0zgKZrU2XJTpmvIVRTqWnjehM-k0c2Gb57AXo
 
 {
-    "postid": "0dfb8e3b-07e7-4707-b38a-fc109d22f615",
-    "userid": "62015153-c214-4c99-9f4a-108c7695f52c"
+    "postid": "380f14f4-9ded-4706-871e-1d4b8237a3ad",
+    "userid": "62c7c30c-05fa-45ab-9c2f-be40fcf42cff"
 }
 
 
 ###UNLIKE POST
 DELETE  http://localhost:4600/post/unlike/83cbb100-d036-4384-97cb-78c979dfdc80
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ1MjQxNDMsImV4cCI6MTY5NDU2MDE0M30.8PehlGeM1TWOCboVNqZ0a7dR4ou_Nm6cvtKX-7a11F4
 
 ###GET ALL  LIKES FOR A POST
 GET http://localhost:4600/post/allikes/0dfb8e3b-07e7-4707-b38a-fc109d22f615
@@ -118,13 +120,13 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 ### ADD COMMENT
 POST http://localhost:4600/comment/new
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5NDUzMzE5OX0.DFtnQxQG0_7Oij2s9uwme95QEdfvEukmakVS4k5n44A
 
 {
-    "postid": "474f33e1-339b-4ae2-81df-2cb948c254f4",
-    "commentbdy": "blah blah blah",
-    "userid": "bff3e511-d724-4529-8488-dc47b3d53a24",
-    "parentcomment": "affada04-9f65-43a4-ab71-6151fb8c1799"
+    "postid": "380f14f4-9ded-4706-871e-1d4b8237a3ad",
+    "commentbdy": "I also like it",
+    "userid": "c6c442ac-06dd-4465-ba98-143d14a4827d",
+    "parentcomment": "f4f1ecfd-ae1d-4079-9c28-adc69d1e705b"
     
 }
 
@@ -133,7 +135,7 @@ PUT http://localhost:4600/comment/delete/affada04-9f65-43a4-ab71-6151fb8c1799
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###GET COMMENTS BY POST OR COMMENT ID
-GET  http://localhost:4600/comment/pcid/affada04-9f65-43a4-ab71-6151fb8c1799
+GET  http://localhost:4600/comment/pcid/380f14f4-9ded-4706-871e-1d4b8237a3ad
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###LIKE COMMENT
@@ -153,4 +155,9 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 ###GET ALL  LIKES FOR A COMMENT
 GET http://localhost:4600/comment/allikes/f17865a4-b1ae-4d8d-ae10-84923e97c0bf
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+
+###
+GET http://localhost:4600/user/tokencheck
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDUyNzMyNCwiZXhwIjoxNjk0NTYzMzI0fQ.gPJu96DNONATA8s0775LW1fHETU7kNA77X1X9yDe1oA
   
+

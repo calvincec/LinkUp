@@ -5,11 +5,12 @@ const {v4} = require('uuid')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv');
-const { newuserValidator } = require('../Validators/userValidator');
-const { loginuserValidator } = require('../Validators/userValidator');
-const { updateuserValidator } = require('../Validators/userValidator');
-const { followuserValidator } = require('../Validators/userValidator');
+const { newuserValidator } = require('../Validators/allValidator.js');
+const { loginuserValidator } = require('../Validators/allValidator.js');
+const { updateuserValidator } = require('../Validators/allValidator.js');
+const { followuserValidator } = require('../Validators/allValidator.js');
 dotenv.config()
+const { SECRET } = process.env;
 
 const newuser = async(req,res)=>{
     try {
@@ -91,14 +92,17 @@ const loginuser = async(req,res)=>{
 
         const pool  = await mssql.connect(sqlConfig)
         const user = (await pool.request().input('email', mssql.VarChar, email).execute('userLogin')).recordset[0]
+
+        // console.log(user);
         
         
         if(user){
             const hashedPwd = user.password
             const comparePwd = await bcrypt.compare(password, hashedPwd)
             if(comparePwd){
-                const {password, ...payload} = user  
+                const {password, isdeleted,...payload}=user  
                 const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000s'}) 
+                // console.log(payload);
                 return res.status(200).json({
                     message : "Logged in",
                     token
@@ -169,8 +173,8 @@ const updateuser = async(req,res)=>{
                 return res.status(400).json({ error: "Ensure the email does not exceed 255 characters" });
             }
         }
-        return res.status(500).json({ error: 'Internal server error' });
-        // return res.status(404).json({error})
+        // return res.status(500).json({ error: 'Internal server error' });
+        return res.status(404).json({error})
     }
 }
 
@@ -300,11 +304,29 @@ const peopleymk = async(req, res)=>{
 }
 
 
+
+const checkToken = async(req,res)=>{
+    if(req.info){
+        // console.log("reaches here");
+        return res.status(200).json({
+            userdet: req.info
+        })
+    }
+    else{
+        return res.json({
+            error: "nothing found"
+        })
+    }
+}
+
+
+
+
 module.exports = {
     newuser, following,
     loginuser, userViewAllFollowers,
     updateuser, peopleymk,
-    otherUsers,
+    otherUsers, checkToken,
     deleteUser,
     followUser
 }

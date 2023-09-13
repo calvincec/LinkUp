@@ -52,7 +52,8 @@ CREATE TABLE "comment"(
 
 
 
-
+ALTER TABLE
+    "comment" ADD CONSTRAINT "comment_userid_foreign" FOREIGN KEY("userid") REFERENCES "users"("userid");
 
 ALTER TABLE
     "comment" ADD CONSTRAINT "comment_parentcomment_foreign" FOREIGN KEY("parentcomment") REFERENCES "comment"("commentid");

@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, of } from 'rxjs';
 // import { ApiService } from '../api.service';
 
 // used reactive forms like as explained in https://www.digitalocean.com/community/tutorials/angular-reactive-forms-introduction
@@ -78,12 +78,38 @@ export class LoginComponent implements OnInit{
           localStorage.setItem('token', token)
 
 
-          setTimeout(() => {
-            this.alertMsg=''
-            this.clr = 'red'
-            form.reset()
-            this.router.navigate(['/posts']);
-          }, 3000);
+          
+
+          this.api.getTokendet()
+          .pipe(
+            catchError((error) => {
+              let problems = error.error.Error
+              return of({})
+              // return throwError(error);
+            })
+          )
+
+          .subscribe((res: any)=>{
+            console.log(res);
+              if(res.userdet){
+                console.log(res.userdet.userid);
+                localStorage.setItem('userid', res.userdet.userid)
+
+                setTimeout(() => {
+                  this.alertMsg=''
+                  this.clr = 'red'
+                  form.reset()
+                  this.router.navigate(['/posts']);
+                }, 3000);
+                }
+            
+          })
+
+          this.alertMsg=''
+          this.clr = 'red'
+          form.reset()
+          
+
         }else{
           this.alertMsg = 'Invalid Credentials'
         }
@@ -118,3 +144,10 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['/register']);
   }
 }
+
+
+
+
+
+
+

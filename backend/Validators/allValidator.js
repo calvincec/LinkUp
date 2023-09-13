@@ -2,10 +2,10 @@ const joi=require('joi')
 
 // user validators
 const updateuserValidator=joi.object({
-    username:joi.string().required().min(5).max(20).messages({
+    username:joi.string().min(5).max(20).messages({
         'username.empty':'Please Input Your user name with length 5 to 20' }),
         
-    email:joi.string().required().lowercase().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+    email:joi.string().lowercase().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
     bio:joi.string(),
     profilepic:joi.string()
 })
