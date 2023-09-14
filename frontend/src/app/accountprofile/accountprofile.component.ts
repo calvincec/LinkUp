@@ -1,4 +1,6 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-accountprofile',
@@ -7,6 +9,23 @@ import { Component, Renderer2 } from '@angular/core';
 })
 export class AccountprofileComponent {
   
+  constructor(private router: Router, private api:ApiService){
+    this.api.getTokendet().subscribe((res: any)=>{
+      console.log(res);
+      if(res.userdet){
+        // console.log(res.userdet.profilepic);
+        this.bio = res.userdet.bio
+        this.username = res.userdet.username
+        this.email = res.userdet.email
+        this.profilepic = res.userdet.profilepic
+      }
+    })
+  }
+  bio = ''
+  email = ''
+  profilepic = ''
+  username = ''
+
   choice = 'followers'
   txtcolor = 'white'
   txtcolor1 = '#FF851B'
@@ -31,4 +50,7 @@ export class AccountprofileComponent {
     this.txtcolor1 = this.txtcolor
     this.txtcolor2 = this.txtcolor
   }
+
+
+
 }

@@ -65,7 +65,7 @@ export class ApiService {
     return this.http.get(`http://localhost:4600/post/all/${userid}`)
   }
   getOnePostService(postid: string, details: credentials){
-    console.log(details);
+    // console.log(details);
     const headers: any = this.headers
     // const headers2: any = this.headers2
     return this.http.put(`http://localhost:4600/post/one/${postid}`, details,  { headers })

@@ -153,13 +153,13 @@ PUT http://localhost:4600/comment/delete/affada04-9f65-43a4-ab71-6151fb8c1799
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 ###GET COMMENTS BY POST OR COMMENT ID
-GET  http://localhost:4600/comment/pcid/f4f1ecfd-ae1d-4079-9c28-adc69d1e705b
+GET  http://localhost:4600/comment/pcid/380f14f4-9ded-4706-871e-1d4b8237a3ad
 Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
 
 {
-    "userid": "c6c442ac-06dd-4465-ba98-143d14a4827d"
+    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff"
 }
 
 ###LIKE OR UNLIKE COMMENT

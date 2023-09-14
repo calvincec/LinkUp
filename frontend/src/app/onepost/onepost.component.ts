@@ -37,16 +37,13 @@ export class OnepostComponent implements OnInit{
  
       //get details for one post
       const userid = localStorage.getItem('userid')
-      // console.log(userid);
+      
       const entity: any = {
         userid: userid
       }
       this.api.getOnePostService(this.postid, entity).subscribe((one: any)=>{
         const onepost = one.onePost[0]
-        
-        // console.log(onepost);
-        
-        // console.log(onepost.curuserliked);
+
         if(onepost.curuserliked!=null){
           this.likefill = '#FF851B'
           this.stroke = '#FF851B'
@@ -65,19 +62,45 @@ export class OnepostComponent implements OnInit{
             //for each comment, get subcomments and append them to the comment object
             this.allcomments.forEach((element: any) => {
               const id: string = element.commentid
+
+              // if(element.curuserliked!=null){
+              //   element.fillColor = '#FF851B'
+              //   element.strokeColor = '#FF851B'
+              // }
+              // else{
+              //   element.fillColor = 'none'
+              //   element.strokeColor = 'white';
+              // }
+              
+
               this.api.getComments(id).subscribe((val: any)=>{
                 if(val && val.comments){
-                  if(val.comments.lenght !=0){
+                  if(val.comments.length !=0){
                     this.comment2Display = ''
+
+                    // val.comments.forEach((comm: any) => {
+
+                      // if(comm.curuserliked!=null){
+                      //   comm.fillColor = '#FF851B'
+                      //   comm.strokeColor = '#FF851B'
+                      // }
+                      // else{
+                      //   comm.fillColor = 'none'
+                      //   comm.strokeColor = 'white';
+                      // }
+
+                      // comm.fillColor = '#FF851B'
+                    // });
                     element.innercomments = val.comments
-                    // console.log(val.comments);
-                    // console.log(element);
+                    // element.innercomments.fillColor = '#FF851B'
+;
                   }
                   
                 }
                 else{
                   this.comment2Display = 'none'
-                  console.log("no comment");
+                  
+ 
                 }
               })
 
@@ -92,7 +115,7 @@ export class OnepostComponent implements OnInit{
         } else {
           console.error('Invalid API response format');
         }
-        console.log(this.allcomments);
+        // console.log(this.allcomments);
       });
       
       
@@ -105,7 +128,7 @@ export class OnepostComponent implements OnInit{
       const userid = localStorage.getItem('userid')
       // console.log(this.form.value);
       // console.log(details);
-      console.log(userid);
+      // console.log(userid);
 
       
       if(details.commentid){
@@ -119,7 +142,7 @@ export class OnepostComponent implements OnInit{
         }
         // console.log(comment);
 
-        console.log('comment the comment');
+        // console.log('comment the comment');
         this.api.commentTheComment(comment).subscribe((res: any)=>{
           // console.log(res);
           if(res.message){
@@ -139,11 +162,10 @@ export class OnepostComponent implements OnInit{
           parentcomment: null
         }
 
-        console.log(comment);
+        // console.log(comment);
         
-        console.log('comment the post');
         this.api.commentThePost(comment).subscribe((res: any)=>{
-          console.log(res);
+          // console.log(res);
           if(res.message){
             if(res.message=='Comment added successfully'){
               form.reset()
@@ -160,36 +182,30 @@ export class OnepostComponent implements OnInit{
   }
 
 
-  likeunlike(postid: string, index: any){
-    console.log(postid);
-    console.log(index);
-    
+  likeunlike(){
+    const postid = localStorage.getItem('postid')
     const userid = localStorage.getItem('userid')
     const obj: any = {
       userid : userid,
-      commentid: postid
+      postid: postid
     }
-    this.api.likeComment(obj).subscribe((res: any)=>{
-      console.log(res.likeid);
+    this.api.like(obj).subscribe((res: any)=>{
+      
       
       if(res.likeid){
         if(res.likeid.length!=0){
-          console.log(res.likeid.length);
-          // this.posts[index].fillColor = '#FF851B'
-          // this.posts[index].likes++
+          this.likefill = '#FF851B'
+          this.stroke = '#FF851B'
+          this.onepost.likes++
         }
         else{
-          // console.log(res.likeid.length);
           
-          // this.posts[index].fillColor = ''
-          // this.posts[index].likes--
+          this.likefill = 'none'
+          this.stroke = 'white'
+          this.onepost.likes--
         }
       }
-
-
-
-    })
-    
-    
-  }
+    })  
+  } 
 }
+
