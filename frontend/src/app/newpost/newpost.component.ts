@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ApiService } from '../api.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { catchError } from 'rxjs/operators';
+import { throwError, of } from 'rxjs';
 // import { environment } from './../environments/environment';
 
 @Component({
@@ -7,17 +12,39 @@ import { environment } from 'src/environments/environment';
   templateUrl: './newpost.component.html',
   styleUrls: ['./newpost.component.css']
 })
-export class NewpostComponent {
+export class NewpostComponent implements OnInit {
+  form!: FormGroup;
   
-  // image = 'data:image/jpeg;base64,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'
+  constructor(private router: Router, private api:ApiService) {
+    this.api.getTokendet().subscribe((res: any)=>{
+      // console.log(res);
+      if(res.userdet){
+        // console.log(res.userdet.profilepic);
+        this.profilepic = res.userdet.profilepic
+      }
+    })
+  }
+  ngOnInit() {
+    this.form = new FormGroup({
+      postwords: new FormControl(''),
+      postpic: new FormControl(''),
+    });
+  }
+  
+  profilepic: any = ''
   image: string | ArrayBuffer | null = null; // Initialize image as null
-  
-  postpicurl = ''
+  errormsg = ''
+  errormsgdisp: string = 'none'
+  errormsgcolor: string = '#FF851B'
+
+  postpicurl: any = ''
+  display = 'none'
   async pic(event: any) {
+    this.display=''
     // Handle the file change event here
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      console.log('Selected file:', selectedFile);
+      // console.log('Selected file:', selectedFile);
 
       // changes beagn from here
       // ensure you replace any instance of [environment.cloud_name] with your clodinary cloud_name
@@ -34,9 +61,8 @@ export class NewpostComponent {
       
     }
 
-
     let profileurl2  = await this.postpicurl
-      console.log('picture url: ', profileurl2);
+      // console.log('picture url: ', profileurl2);
     // ends here
       
       
@@ -50,5 +76,76 @@ export class NewpostComponent {
     reader.readAsDataURL(selectedFile);
   }
 
+  deletePic(){
+    this.image = null
+    // console.log(this.postpicurl);
+    
+    this.postpicurl = ''
+    // console.log(this.postpicurl);
+    this.display = 'none'
+  }
+
+  onSubmit(form: FormGroup){
+    console.log("Valid?", form.valid);
+    console.log("postwords: ", form.value.postwords);
+    console.log('postpic: ', this.postpicurl);
+    console.log('postpic: ', form.value.postpic);
+
+    const postwords  = form.value.postwords
+    const userid = localStorage.getItem('userid')
+    const postdetails: any = {
+      userid: userid,
+      postwords: form.value.postwords,
+      postpic: this.postpicurl
+    }
+
+    if(postwords!='' || this.postpicurl != ''){
+        this.api.createNewPost(postdetails)
+            .pipe(
+              catchError((error) => {
+                let problems = error.error.error
+                if(problems){
+                  console.log(problems);
+                }
+                else{
+                  problems = error.error;
+                  console.log(problems);
+                }
+                console.clear()
+                return of({})
+              })
+            )
+            .subscribe((res: any)=>{
+              if(res.message){
+                this.errormsg = res.message
+                this.errormsgdisp = ''
+                this.errormsgcolor = 'green'
+                form.reset()
+                setTimeout(() => {
+                  this.errormsg = ''
+                  this.errormsgdisp = 'none'
+                  this.router.navigate(['posts']);
+                }, 1000);
+              }
+              
+            })
+
+      
+    }
+
+    else{
+      this.errormsg = 'Please type something'
+      this.errormsgdisp = ''
+      this.errormsgcolor = '#FF851B'
+      setTimeout(() => {
+        this.errormsg = ''
+        this.errormsgdisp = 'none'
+      }, 1000);
+    }
+    
+    
+    
+    
+  }
 
 }

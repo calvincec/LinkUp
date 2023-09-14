@@ -12,7 +12,7 @@ postRouter.put('/update/:postid',tokenVerfying, updatePost)
 postRouter.post('/like',tokenVerfying, likePost)
 // postRouter.delete('/unlike/:likeid',tokenVerfying, unlikePost)
 postRouter.get('/allikes/:postid',tokenVerfying, allikesPost)
-postRouter.get('/one/:postid', getOnePost)
+postRouter.put('/one/:postid', getOnePost)
 
 
 module.exports = {

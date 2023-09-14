@@ -32,7 +32,7 @@ export class PostsComponent {
 
 
           element.fillColor = '';
-          console.log(element.curuserliked);
+          // console.log(element.curuserliked);
           if(element.curuserliked!=null){
             element.fillColor = '#FF851B'
           }
@@ -41,7 +41,7 @@ export class PostsComponent {
           index++
         });
         this.posts = res.allPosts;
-        console.log(this.posts);
+        // console.log(this.posts);
         
       } else {
         console.error('Invalid API response format');
@@ -85,7 +85,7 @@ export class PostsComponent {
  
 
   navtoOnepost(postid: any){
-    console.log("item", postid);
+    // console.log("item", postid);
     try {
       localStorage.removeItem('postid')
     } catch (error) {    }

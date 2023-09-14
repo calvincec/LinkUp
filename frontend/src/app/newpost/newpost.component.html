@@ -5,16 +5,22 @@
         <div class="header">
             New post
         </div>
+        <div class="errormsg" [style.color]="errormsgcolor" [style.display]="errormsgdisp">
+            {{errormsg}}
+        </div>
         <div class="postbody">
-            <img src="../assets/person.jpeg" alt="profile pic" class="profilepic">
-            <form action="" class="newpostform">
+            <img *ngIf="profilepic!=null " [src]="profilepic"  class="profilepic">
+            <img *ngIf="profilepic==null" src="../assets/person.jpeg"  class="profilepic">
+            
+            <form [formGroup]="form"  (ngSubmit)="onSubmit(form)" class="newpostform">
                 <!-- <input type="text" name="" class="postwords"  placeholder="What’s on your mind??" > -->
-                <textarea name="" class="postwords"  placeholder="What’s on your mind??" ></textarea>
-                <div class="postimage" >
+                <textarea name="" class="postwords"  placeholder="What’s on your mind??" formControlName="postwords"></textarea>
+                <div class="postimage" [style.display]="display">
                     <img [src]='image' alt="">
+                    <img src="../assets/cancel.svg" (click)="deletePic()">
                 </div>
                 <div class="bottomform">
-                    <input type="file" name="" class="newpostimginput"  (change)="pic($event)">
+                    <input type="file" name="" class="newpostimginput"  (change)="pic($event)" formControlName="postpic">
                     
                     <button type="submit" class="btn">Post</button>
                 </div>

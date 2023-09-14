@@ -15,6 +15,24 @@ interface postUserId{
   userid: string
   postid: string
 }
+interface commentUserId{
+  userid: string
+  commentid: string
+}
+interface userPostwords{
+  userid: string
+  postwords: any
+  postpic: any
+}
+interface anyComments{
+  postid: any
+  commentbdy: string
+  userid: string
+  parentcomment: any
+}
+interface useridv{
+  userid: any
+}
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +44,12 @@ export class ApiService {
   
   token = localStorage.getItem('token')
   headers = new HttpHeaders({
+    'Content-Type': 'application/json',
     'token': `${this.token}` // Assuming the token is a Bearer token
   });
+  // headers2 = new HttpHeaders({
+  //   'Content-Type': 'application/json'
+  // })
   userid = localStorage.getItem('userid')
 
   LoginService(details: credentials){
@@ -40,11 +62,13 @@ export class ApiService {
 
   AllPostsService(){
     const userid = this.userid
-    
     return this.http.get(`http://localhost:4600/post/all/${userid}`)
   }
-  getOnePostService(postid: string){
-    return this.http.get(`http://localhost:4600/post/one/${postid}`)
+  getOnePostService(postid: string, details: credentials){
+    console.log(details);
+    const headers: any = this.headers
+    // const headers2: any = this.headers2
+    return this.http.put(`http://localhost:4600/post/one/${postid}`, details,  { headers })
   }
 
   getComments(pcid: any){
@@ -58,8 +82,23 @@ export class ApiService {
   }
   like(details: postUserId){
     const headers: any = this.headers
-
     return this.http.post('http://localhost:4600/post/like', details, { headers })
+  }
+  likeComment(details: commentUserId){
+    const headers: any = this.headers
+    return this.http.post('http://localhost:4600/comment/like', details, { headers })
+  }
+  createNewPost(details: userPostwords){
+    const headers: any = this.headers
+    return this.http.post('http://localhost:4600/post/new', details, { headers })
+  }
 
+  commentThePost(details: anyComments){
+    const headers: any = this.headers
+    return this.http.post('http://localhost:4600/comment/new', details, { headers })
+  }
+  commentTheComment(details: anyComments){
+    const headers: any = this.headers
+    return this.http.post('http://localhost:4600/comment/new', details, { headers })
   }
 }

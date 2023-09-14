@@ -60,11 +60,11 @@ const deleteComment = async(req, res)=>{
 const getComment = async(req,res)=>{
     try {
         const id = req.params.id
-        const { userid } = req.body
+        const { userid } = req.body;
         const pool = await mssql.connect(sqlConfig)
         const out = await pool.request()
-        .input('userid', mssql.VarChar, userid)
         .input('id', mssql.VarChar, id)
+        .input('userid', mssql.VarChar, userid)
         .execute('getCommentPcidProc')
 
         const comments = out.recordset
@@ -72,6 +72,7 @@ const getComment = async(req,res)=>{
 
 
     } catch (error) {
+        return res.json({Error: error})
         return res.status(500).json({ error: 'Internal server error' }); 
     }
 }

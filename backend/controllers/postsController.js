@@ -66,9 +66,11 @@ const getAllPosts = async(req, res)=>{
 const getOnePost = async (req,res)=>{
     try {
         const postid = req.params.postid
+        const { userid } = req.body
         const pool  = await mssql.connect(sqlConfig)
         let out = await (pool.request()
         .input('postid', mssql.VarChar, postid)
+        .input('userid', mssql.VarChar, userid)
         .execute('getOnePostProc'))
 
         out = out.recordset

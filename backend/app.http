@@ -66,18 +66,26 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 ###POSTS ROUTES
 POST http://localhost:4600/post/new
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5NDUzMzE5OX0.DFtnQxQG0_7Oij2s9uwme95QEdfvEukmakVS4k5n44A
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDY3Mzc4MSwiZXhwIjoxNjk0NzA5NzgxfQ.kiDslojZ0yT3R6ZvvMTVwOwuYxTado_Sp6vadR5Gk68
 
 {
     "userid": "62c7c30c-05fa-45ab-9c2f-be40fcf42cff",
-    "postwords": "Hey bother benerd"
+    "postwords": "",
+    "postpic": "https://images.pexels.com/photos/18184113/pexels-photo-18184113/free-photo-of-man-posing-with-llama.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
 }
 
 ### GET ALL POSTS
 GET http://localhost:4600/post/all/62c7c30c-05fa-45ab-9c2f-be40fcf42cff
+Content-Type: application/json
 
 ###GET ONE POST BY POST ID
-GET http://localhost:4600/post/one/380f14f4-9ded-4706-871e-1d4b8237a3ad
+PUT http://localhost:4600/post/one/3b117a77-1a15-4587-93a3-2a1ec84a9fd7
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDY3Mzc4MSwiZXhwIjoxNjk0NzA5NzgxfQ.kiDslojZ0yT3R6ZvvMTVwOwuYxTado_Sp6vadR5Gk68
+
+{
+    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff"
+}
 
 ### get current user's posts
 GET http://localhost:4600/post/currentuser/bc7fa4c4-0ab6-4e56-a732-574ba3a98325
@@ -134,8 +142,8 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5
 
 {
     "postid": "380f14f4-9ded-4706-871e-1d4b8237a3ad",
-    "commentbdy": "I also like it",
-    "userid": "c6c442ac-06dd-4465-ba98-143d14a4827d",
+    "commentbdy": "jdhchdkc",
+    "userid": "127b0227-57e0-415e-8f75-f1f81827b047",
     "parentcomment": "f4f1ecfd-ae1d-4079-9c28-adc69d1e705b"
     
 }
@@ -146,20 +154,22 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 
 ###GET COMMENTS BY POST OR COMMENT ID
 GET  http://localhost:4600/comment/pcid/f4f1ecfd-ae1d-4079-9c28-adc69d1e705b
+Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
 
+
 {
-    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff"
+    "userid": "c6c442ac-06dd-4465-ba98-143d14a4827d"
 }
 
 ###LIKE OR UNLIKE COMMENT
 POST  http://localhost:4600/comment/like
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDU5NDc1OSwiZXhwIjoxNjk0NjMwNzU5fQ.j0uKFC8iOg5k6rMadhB_As_8sXJ8HNACI9djAemEUZc
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDY5NDE0MCwiZXhwIjoxNjk0NzMwMTQwfQ.W7bGy7g8DQH8j34JAJGm4aPivg9c6MG4XS9uVVHAj4A
 
 {
     "commentid": "8fa6d123-9391-4e9e-b078-649849da3bb5",
-    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff"
+    "userid": "c6c442ac-06dd-4465-ba98-143d14a4827d"
 }
 
 # ###UNLIKE COMMENT

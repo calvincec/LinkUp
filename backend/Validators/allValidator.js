@@ -33,13 +33,13 @@ const followuserValidator=joi.object({
 // post validators
 const newPostValidator=joi.object({
     userid:joi.string().required(),
-    postwords:joi.string(),
-    postpic:joi.string()
+    postwords:joi.string().allow(null).empty(''),
+    postpic:joi.string().allow(null).empty('')
 })
 
 const updatePostValidator=joi.object({
-    postwords:joi.string(),
-    postpic:joi.string()
+    postwords:joi.string().allow(null).empty(''),
+    postpic:joi.string().allow(null).empty('')
 })
 
 

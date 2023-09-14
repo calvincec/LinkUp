@@ -47,7 +47,8 @@ CREATE TABLE "comment"(
     "commentbdy" VARCHAR(1000) NOT NULL,
     "userid" VARCHAR(255) NOT NULL,
     "parentcomment" VARCHAR(255) NULL,
-    "isdeleted" BIT DEFAULT 0
+    "isdeleted" BIT DEFAULT 0,
+    "createdat" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
 
 
