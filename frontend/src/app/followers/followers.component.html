@@ -1,15 +1,15 @@
 <div class="people">
-    <div class="person">
+    <div class="person" *ngFor="let person of followers">
         <div class="profilepic">
             <img src="../assets/person.jpeg" alt="profile pic" class="profilepicimg">
         </div>
         <div class="profilewords">
-            <p class="name">John Doe</p>
+            <p class="name">John Doe {{person}}</p>
             <p class="email">calyndemo16@gmail.com</p>
             <p class="bio">It is how you define</p>
         </div> 
     </div>
-    <div class="person">
+    <!-- <div class="person">
         <div class="profilepic">
             <img src="../assets/person.jpeg" alt="profile pic" class="profilepicimg">
         </div>
@@ -18,7 +18,7 @@
             <p class="email">calyndemo16@gmail.com</p>
             <p class="bio">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero ea praesentium doloribus reprehenderit! Libero obcaecati sit odio quidem eaque iste.</p>
         </div> 
-    </div>
+    </div> -->
 
 
 </div>

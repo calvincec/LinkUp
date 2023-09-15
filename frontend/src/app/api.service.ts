@@ -19,6 +19,10 @@ interface commentUserId{
   userid: string
   commentid: string
 }
+interface followerUserId{
+  userid: string
+  followerid: string
+}
 interface userPostwords{
   userid: string
   postwords: any
@@ -100,5 +104,29 @@ export class ApiService {
   commentTheComment(details: anyComments){
     const headers: any = this.headers
     return this.http.post('http://localhost:4600/comment/new', details, { headers })
+  }
+  peopleymk(){
+    const headers: any = this.headers
+    const userid: any = this.userid
+    return this.http.get(`http://localhost:4600/user/peopleymk/${userid}`, { headers })
+  }
+
+  viewAllFollowers(userid: any){
+    const headers: any = this.headers
+    // const userid: any = this.userid
+
+    return this.http.get(`http://localhost:4600/user/allfollowers/${userid}`, { headers })
+  }
+
+  viewAllUserFollowing(userid: any){
+    const headers: any = this.headers
+    // const userid: any = this.userid
+
+    return this.http.get(`http://localhost:4600/user/following/${userid}`, { headers })
+  }
+
+  follow(details: followerUserId){
+    const headers: any = this.headers
+    return this.http.post(`http://localhost:4600/user/follow`, details, { headers })
   }
 }

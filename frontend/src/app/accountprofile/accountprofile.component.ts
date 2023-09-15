@@ -11,7 +11,7 @@ export class AccountprofileComponent {
   
   constructor(private router: Router, private api:ApiService){
     this.api.getTokendet().subscribe((res: any)=>{
-      console.log(res);
+      // console.log(res);
       if(res.userdet){
         // console.log(res.userdet.profilepic);
         this.bio = res.userdet.bio

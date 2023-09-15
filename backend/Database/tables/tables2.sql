@@ -26,7 +26,7 @@ CREATE TABLE "users"(
     "isdeleted" BIT DEFAULT 0
 );
 
-
+select * from users
 CREATE TABLE "postlikes"(
     "likeid" VARCHAR(255) PRIMARY KEY NOT NULL,
     "postid" VARCHAR(255) NOT NULL,

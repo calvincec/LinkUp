@@ -8,7 +8,8 @@
         </div>
         <div class="profileinfo">
             <div class="profilepic">
-                <img src="../assets/person.jpeg" alt="profile pic" class="profilepicimg">
+                <img *ngIf="profilepic!=null" [src]="profilepic"  class="profilepicimg">
+                <img *ngIf="profilepic==null" [src]="'../assets/logo.png'"  class="profilepicimg">
             </div>
             <div class="profilewords">
                 <p class="name">{{username}}</p>
