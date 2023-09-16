@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class OnepostComponent implements OnInit{
 
-  constructor(private route: ActivatedRoute, private api: ApiService) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
   //the two will be used hide or unhide comments and sub comments divs resp if no comment below
   commentDisplay = ''
   comment2Display = "" //dynamically replaced with none
@@ -207,5 +207,14 @@ export class OnepostComponent implements OnInit{
       }
     })  
   } 
+
+  back(){
+
+    try {
+      localStorage.removeItem('postid')
+    } catch (error) {}
+
+    this.router.navigate(['posts'])
+  }
 }
 

@@ -3,7 +3,8 @@
     <div class="navbarn"><app-navbar class="navbarc"></app-navbar></div>
     <div class="newpostbody">
         <div class="header">
-            New post
+            <img (click)="back()" src="../assets/arrow.svg"> New post
+            
         </div>
         <div class="errormsg" [style.color]="errormsgcolor" [style.display]="errormsgdisp">
             {{errormsg}}

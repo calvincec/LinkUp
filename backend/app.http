@@ -51,6 +51,18 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
     "followerid": "62015153-c214-4c99-9f4a-108c7695f52c"
 }
 
+### UNFOLLOW USER
+### followerid is the current user while userid is the user to be unfollowed
+PUT  http://localhost:4600/user/unfollow
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDc4MjkyMywiZXhwIjoxNjk0ODE4OTIzfQ.r5Ks4k9axRUL_8CsLPilVTLume0zGos3SdwDnFCfJhg
+
+{
+    "userid": "7fc2346a-bc0b-41fd-878c-d348e203fcff",
+    "followerid": "127b0227-57e0-415e-8f75-f1f81827b047"
+}
+
+
 ###user view all followers
 GET  http://localhost:4600/user/allfollowers/bff3e511-d724-4529-8488-dc47b3d53a24
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
@@ -183,6 +195,8 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 
 ###
 GET http://localhost:4600/user/tokencheck
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDUyNzMyNCwiZXhwIjoxNjk0NTYzMzI0fQ.gPJu96DNONATA8s0775LW1fHETU7kNA77X1X9yDe1oA
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDc4NTU4MiwiZXhwIjoxNjk0ODIxNTgyfQ.Ysxm8X96WbfAR14iDe6Tuhcshjh_trWmYZlz69nj-ic
+
   
 

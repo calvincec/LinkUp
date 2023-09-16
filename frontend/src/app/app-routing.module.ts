@@ -7,6 +7,7 @@ import { PostsComponent } from './posts/posts.component';
 import { NewpostComponent } from './newpost/newpost.component';
 import { OnepostComponent } from './onepost/onepost.component';
 import { AccountprofileComponent } from './accountprofile/accountprofile.component';
+import { ChangesComponent } from './changes/changes.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent}, //login
@@ -15,7 +16,8 @@ const routes: Routes = [
   // {path: '', component: NavbarComponent},
   {path: 'newpost', component: NewpostComponent}, //newpost
   {path: 'onepost', component: OnepostComponent},  //onepost
-  {path: 'accountprofile', component: AccountprofileComponent}  //accountprofile
+  {path: 'accountprofile', component: AccountprofileComponent},  //accountprofile
+  {path: 'change', component: ChangesComponent} //change
 ];
 
 @NgModule({

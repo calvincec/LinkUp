@@ -12,7 +12,8 @@ export class PeopleymkComponent implements OnInit{
   }
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
-    this.api.peopleymk()
+    const userid = localStorage.getItem('userid')
+    this.api.peopleymk(userid)
     .subscribe((res: any)=>{
       // console.log(res);
       

@@ -64,8 +64,7 @@ export class ApiService {
     return this.http.post('http://localhost:4600/user/register', details)
   }
 
-  AllPostsService(){
-    const userid = this.userid
+  AllPostsService(userid: any){
     return this.http.get(`http://localhost:4600/post/all/${userid}`)
   }
   getOnePostService(postid: string, details: credentials){
@@ -105,9 +104,8 @@ export class ApiService {
     const headers: any = this.headers
     return this.http.post('http://localhost:4600/comment/new', details, { headers })
   }
-  peopleymk(){
+  peopleymk(userid: any){
     const headers: any = this.headers
-    const userid: any = this.userid
     return this.http.get(`http://localhost:4600/user/peopleymk/${userid}`, { headers })
   }
 
@@ -128,5 +126,9 @@ export class ApiService {
   follow(details: followerUserId){
     const headers: any = this.headers
     return this.http.post(`http://localhost:4600/user/follow`, details, { headers })
+  }
+  unfollow(details: followerUserId){
+    const headers: any = this.headers
+    return this.http.put("http://localhost:4600/user/unfollow", details, { headers })
   }
 }

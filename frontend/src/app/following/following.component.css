@@ -4,7 +4,8 @@
 .person{
     display: flex;
     /* border-bottom: solid black; */
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    width: 100%;
 }
 .profilepic{
     margin-right: 5px;
@@ -17,6 +18,31 @@
     width: 60px;
 }
 .name{
-    font-size: 20px;
+    font-size: 16px;
     padding: 0;
+    /* margin-right: 50px; */
+}
+.innerheader{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    
+}
+.profilewords>p{
+    font-size: 12px;
+}
+
+.unfollowbtn{
+    background-color: #755BB4;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    height: 30px;
+    /* align-items: center; */
+    border: 0;
+    outline: none;
+}
+.profilewords{
+    width: calc(100% - 80px);
+    display: block;
 }

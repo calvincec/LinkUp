@@ -20,7 +20,8 @@ export class PostsComponent {
 
   
   constructor(private api: ApiService, private router: Router) {
-    this.api.AllPostsService().subscribe((res: any) => {
+    const userid = localStorage.getItem('userid')
+    this.api.AllPostsService(userid).subscribe((res: any) => {
       // console.log(res);
 
       if (res && res.allPosts) {

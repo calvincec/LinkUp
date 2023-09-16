@@ -47,6 +47,13 @@
 .commenticon{
     /* margin-right: 40%; */
 }
+.foot{
+    display: flex;
+    align-items: center;
+}
+.foot>svg{
+    margin-right: 5px;
+}
 
 .title{
     display: flex;
@@ -79,10 +86,10 @@
     width: calc(100% - 60px);
 }
 .posticons{
-    width: 100%;
-    /* display: flex;
+    width: 40%;
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    flex-wrap: nowrap; */
 }
 svg:hover{
     stroke: #FF851B !important;
@@ -102,6 +109,23 @@ svg:hover{
     .postbody{
         width: 100%;
         margin: 0;
+    } 
+}
+
+@media screen and (max-width: 420px) {
+    .posticons{
+        width: 60%;
     }
-    
+}
+
+@media screen and (max-width: 260px) {
+    .posticons{
+        width: 100%;
+    }
+    .username{
+        font-size: 16px;
+    }
+    .postwords{
+        font-size: 14px;
+    }
 }

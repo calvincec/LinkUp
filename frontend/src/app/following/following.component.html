@@ -5,7 +5,12 @@
             <img *ngIf="user.profilepic==null" [src]="'../assets/logo.png'" class="profilepicimg">
         </div>
         <div class="profilewords">
-            <p class="name">{{user.username}}</p>
+            <div class="innerheader">
+                <p class="name">{{user.username}}</p>
+                <button (click)="unfollow(user.userid)" class="unfollowbtn">unfollow</button>
+                <!-- <div  class="unfollowbtn">unfollow</div> -->
+            </div>
+            
             <p class="email">{{user.email}}</p>
             <p class="bio">{{user.bio}}</p>
         </div> 

@@ -45,7 +45,24 @@
     height: 25px; 
 }
 .commenticon{
-    margin-right: 40%;
+    /* margin-right: 40%; */
+}
+.foot{
+    display: flex;
+    align-items: center;
+}
+.foot>svg, .posticons1>svg{
+    margin-right: 5px;
+}
+
+.posticonsm{
+    width: 40%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.posticons1{
+    display: flex;
 }
 .likeicon1, .commenticon1{
     width: 30px;
@@ -171,6 +188,11 @@ input{
         width: 40px;
     }
 }
+@media screen and (max-width: 420px) {
+    .posticonsm{
+        width: 60%;
+    }
+}
 @media screen and (max-width: 382px) {
     .profilepicm{
         margin: 10px;
@@ -190,4 +212,10 @@ input{
     .newcomment1{
         height: 35px;
     }
+}
+@media screen and (max-width: 260px) {
+    .posticonsm{
+        width: 100%;
+    }
+     
 }

@@ -15,6 +15,7 @@ import { FollowingComponent } from './following/following.component';
 import { PeopleymkComponent } from './peopleymk/peopleymk.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChangesComponent } from './changes/changes.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     AccountprofileComponent,
     FollowersComponent,
     FollowingComponent,
-    PeopleymkComponent
+    PeopleymkComponent,
+    ChangesComponent
   ],
   imports: [
     BrowserModule,

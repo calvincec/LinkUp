@@ -142,10 +142,12 @@ export class NewpostComponent implements OnInit {
         this.errormsgdisp = 'none'
       }, 1000);
     }
-    
-    
-    
-    
+   
+  }
+  back(){
+
+   
+    this.router.navigate(['posts'])
   }
 
 }

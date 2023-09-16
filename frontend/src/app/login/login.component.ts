@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit{
             problems = error.error;
           }
           console.clear()
-          return throwError(problems);
+          return of({});
         })
       )
       .subscribe(res=>{

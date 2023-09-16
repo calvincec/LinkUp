@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const { newuser, loginuser, updateuser, otherUsers, deleteUser, followUser, userViewAllFollowers, following, peopleymk, checkToken } = require('../controllers/usercontroller');
+const { newuser, loginuser, updateuser, otherUsers, deleteUser, followUser, userViewAllFollowers, following, peopleymk, checkToken, unfollow } = require('../controllers/usercontroller');
 const { tokenVerfying } = require('../Middleware/verifyToken');
 
 const userrouter = Router()
@@ -14,6 +14,7 @@ userrouter.get('/allfollowers/:userid',tokenVerfying, userViewAllFollowers)
 userrouter.get('/following/:userid',tokenVerfying, following)
 userrouter.get('/peopleymk/:userid',tokenVerfying, peopleymk)
 userrouter.get('/tokencheck',tokenVerfying, checkToken)
+userrouter.put('/unfollow', tokenVerfying, unfollow)
 
 
 module.exports = {

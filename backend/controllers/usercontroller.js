@@ -269,6 +269,35 @@ const userViewAllFollowers = async(req,res)=>{
     }
 }
 
+const unfollow = async(req, res)=>{
+    try {
+        const {userid, followerid} = req.body
+
+        const {error}=followuserValidator.validate(req.body)
+        if(error){
+            return res.status(422).json({error: error.details[0].message})
+        }
+
+        const pool  = await mssql.connect(sqlConfig)
+        const out = await pool.request()
+        .input('userid', mssql.VarChar, userid)
+        .input('followerid', mssql.VarChar, followerid)
+        .execute('unfollowProc');
+
+        if(out.rowsAffected>=1){  
+            return res.status(200).json({
+                message: "user unfollowed",
+            })}
+        else{
+                return res.status(400).json({error: "user does not exist"})
+        }
+
+    } catch (error) {
+        return res.json({Error: error})
+        // return res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 const following = async(req,res)=>{
     try {
         const userid = req.params.userid
@@ -327,6 +356,6 @@ module.exports = {
     loginuser, userViewAllFollowers,
     updateuser, peopleymk,
     otherUsers, checkToken,
-    deleteUser,
+    deleteUser, unfollow,
     followUser
 }
