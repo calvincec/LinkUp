@@ -12,10 +12,10 @@ export class FollowersComponent implements OnInit{
   ngOnInit(): void {
     const userid = localStorage.getItem('userid')
     this.api.viewAllFollowers(userid).subscribe((res: any)=>{
-      console.log(res);
+      // console.log(res);
       if(res.followers){
         this.followers = res.followers
-        console.log(this.followers);
+        // console.log(this.followers);
         
       }
       

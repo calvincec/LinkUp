@@ -145,7 +145,14 @@ export class NewpostComponent implements OnInit {
    
   }
   back(){
-
+    this.profilepic= ''
+    this.image = null; // Initialize image as null
+    this.errormsg = ''
+    this.errormsgdisp = 'none'
+    this.errormsgcolor = '#FF851B'
+  
+    this.postpicurl = ''
+    this.display = 'none'
    
     this.router.navigate(['posts'])
   }

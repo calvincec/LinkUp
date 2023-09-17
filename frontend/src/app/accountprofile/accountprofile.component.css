@@ -26,7 +26,7 @@
 }
 .innernav{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-bottom: solid black;
     border-top: solid black;
 }
@@ -50,8 +50,49 @@
     color: #FF851B;
     cursor: pointer;
 }
+.profilewords>button{
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #755BB4;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+}
+.profilewords>button:hover{
+    background-color: #FF851B;
+    cursor: pointer;
+}
+.updatebio{
+    width: 100%;
+    border-top: solid black;
+    padding-top: 10px;
+    /* margin-left: 20px; */
+    /* background-color: red; */
+}
+.updatefrm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10%;
+}
+.inputs{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.inputs>label{
+    margin-right: 50px;
+}
+.inputs>input{
+    border: none;
+    outline: none;
+    height: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 60%;
 
-
+}
 
 @media screen and (max-width: 768px) {
     /* mobile view */
@@ -76,6 +117,18 @@
         height: 90px;
     }
 }
+.btn{
+    background-color: #755BB4;
+    color: white;
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+}
+.btn:hover{
+    background-color: #FF851B;
+    cursor: pointer;
+}
 @media screen and (max-width: 370px) {
     .username{
         font-size: 12px;
@@ -95,4 +148,13 @@
     .search{
         width: 30%;
     }
+}
+@media screen and (max-width: 250px) {
+    .inputs>input{
+        height: 20px;
+    }
+    .profilewords>button{
+        margin-bottom: 5px;
+    }
+    
 }
