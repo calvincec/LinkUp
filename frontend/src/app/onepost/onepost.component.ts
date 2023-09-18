@@ -40,7 +40,7 @@ export class OnepostComponent implements OnInit{
       
       const entity: any = {
         userid: userid
-      }
+      } 
       this.api.getOnePostService(this.postid, entity).subscribe((one: any)=>{
         const onepost = one.onePost[0]
 
@@ -215,6 +215,19 @@ export class OnepostComponent implements OnInit{
     } catch (error) {}
 
     this.router.navigate(['posts'])
+  }
+
+  userid = localStorage.getItem('userid')
+  deletecomment(commentid: any){
+    console.log(commentid);
+    this.api.deleteComment(commentid).subscribe((res: any)=>{
+      console.log(res);
+      if(res.message){
+        this.ngOnInit()
+      }
+      
+    })
+    
   }
 }
 

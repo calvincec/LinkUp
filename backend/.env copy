@@ -3,3 +3,6 @@ DB_PWD =
 DB_NAME = 
 
 SECRET = 
+
+EMAIL = 
+EMAIL_PWD = 

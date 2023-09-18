@@ -75,42 +75,24 @@ export class LoginComponent implements OnInit{
           this.clr = 'green'
           this.alertMsg = (res as any).message
           const token  = (res as any).token
-          // console.log(token);
+          const userid = (res as any).userid
+          console.log(userid);
           localStorage.clear()
+          try {
+            localStorage.removeItem('userid')
+          } catch (error) {}
+          try {
+            localStorage.removeItem('token')
+          } catch (error) {}
           localStorage.setItem('token', token)
+          localStorage.setItem('userid', userid)
 
-
-          
-
-          this.api.getTokendet()
-          .pipe(
-            catchError((error) => {
-              let problems = error.error.Error
-              return of({})
-              // return throwError(error);
-            })
-          )
-
-          .subscribe((res: any)=>{
-            console.log(res);
-              if(res.userdet){
-                console.log(res.userdet.userid);
-                localStorage.setItem('userid', res.userdet.userid)
-
-                setTimeout(() => {
-                  this.alertMsg=''
-                  this.clr = 'red'
-                  form.reset()
-                  this.router.navigate(['/posts']);
-                }, 3000);
-                }
-            
-          })
-
-          this.alertMsg=''
-          this.clr = 'red'
-          form.reset()
-          
+          setTimeout(() => {
+            this.alertMsg=''
+            this.clr = 'red'
+            form.reset()
+            this.router.navigate(['/posts']);
+          }, 1000);
 
         }else{
           this.alertMsg = 'Invalid Credentials'
@@ -144,6 +126,10 @@ export class LoginComponent implements OnInit{
   }
   signup(){
     this.router.navigate(['/register']);
+  }
+
+  fpassword(){
+    this.router.navigate(['/change']);
   }
 }
 

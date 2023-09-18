@@ -80,7 +80,66 @@ const newuser = async(req,res)=>{
         // return res.status(400).json({error: error})
         return res.status(500).json({ error: 'Internal server error' });
       }
-    }      
+    }
+   
+const checkEmail = async(req,res)=>{
+    try {
+        const email = req.params.email
+        const pool  = await mssql.connect(sqlConfig)
+        const user = (await pool.request().input('email', mssql.VarChar, email).execute('checkEmailProc'))
+
+        const userdetails = user.recordset
+        if(userdetails[0]){
+            return res.status(200).json({message: "email found"})
+        }
+        else{
+            return res.status(400).json({error: "email not found"})
+        }
+        
+        // return res.status(200).json({email: userdetails})
+    } catch (error) {
+        return res.status(400).json({Error: error})
+    }
+}
+const getOneUser = async(req,res)=>{
+    try {
+        const userid = req.params.userid
+
+        const pool  = await mssql.connect(sqlConfig)
+        const user = (await pool.request().input('userid', mssql.VarChar, userid).execute('getOneUserProc'))
+
+        const userdetails = user.recordset[0]
+        return res.status(200).json({userdet: userdetails})
+    } catch (error) {
+        return res.status(400).json({Error: error})
+    }
+}
+const changepwd = async(req,res)=>{
+    try {
+        const email = req.params.email
+        const { password } = req.body
+        const hashedPwd = await bcrypt.hash(password, 5)
+
+        const pool  = await mssql.connect(sqlConfig)
+        const out = (await pool.request()
+        .input('email', mssql.VarChar, email)
+        .input('password', mssql.VarChar, hashedPwd)
+        .execute('changepwd'))
+
+        console.log(out);
+        if(out.rowsAffected==1){  
+            return res.status(200).json({
+                message: "Password changed",
+            })}
+        else{
+                return res.status(400).json({error: "Password not changed"})
+        }
+
+
+    } catch (error) {
+        return res.json({Error: error})
+    }
+}
 const loginuser = async(req,res)=>{
     try {
         const {email, password} = req.body
@@ -101,9 +160,12 @@ const loginuser = async(req,res)=>{
             const comparePwd = await bcrypt.compare(password, hashedPwd)
             if(comparePwd){
                 const {password, isdeleted,...payload}=user  
+                const {userid} = user
+
                 const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000s'}) 
                 // console.log(payload);
                 return res.status(200).json({
+                    userid: userid,
                     message : "Logged in",
                     token
                 })
@@ -174,7 +236,7 @@ const updateuser = async(req,res)=>{
             }
         }
         // return res.status(500).json({ error: 'Internal server error' });
-        return res.status(404).json({error})
+        return res.status(404).json({Error: error})
     }
 }
 
@@ -352,10 +414,10 @@ const checkToken = async(req,res)=>{
 
 
 module.exports = {
-    newuser, following,
+    newuser, following, getOneUser,
     loginuser, userViewAllFollowers,
     updateuser, peopleymk,
     otherUsers, checkToken,
     deleteUser, unfollow,
-    followUser
+    followUser, changepwd, checkEmail
 }

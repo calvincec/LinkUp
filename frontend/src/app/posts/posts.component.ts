@@ -20,6 +20,11 @@ export class PostsComponent {
 
   
   constructor(private api: ApiService, private router: Router) {
+    this.setposts()
+  }
+
+
+  setposts(){
     const userid = localStorage.getItem('userid')
     this.api.AllPostsService(userid).subscribe((res: any) => {
       // console.log(res);
@@ -50,8 +55,6 @@ export class PostsComponent {
     });
   }
 
-
-
   likeunlike(postid: string, index: any){
     console.log(postid);
     const userid = localStorage.getItem('userid')
@@ -75,12 +78,8 @@ export class PostsComponent {
           this.posts[index].likes--
         }
       }
-
-
-
     })
-    
-    
+ 
   }
 
  
@@ -95,7 +94,18 @@ export class PostsComponent {
     this.router.navigate(['onepost'])
   }
   
-  
+  userid = localStorage.getItem('userid')
+  deletepost(postid: any){
+    console.log(postid);
+    this.api.deletePost(postid).subscribe((res: any)=>{
+      console.log(res);
+      if(res.message) {
+        this.setposts()
+      }
+    })
+    
+      
+  }
 
   
   

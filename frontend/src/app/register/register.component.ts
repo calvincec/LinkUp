@@ -121,4 +121,5 @@ export class RegisterComponent {
   signup(){
     this.router.navigate(['']);
   }
+  
 }

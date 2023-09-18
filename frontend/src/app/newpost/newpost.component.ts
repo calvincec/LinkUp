@@ -47,7 +47,7 @@ export class NewpostComponent implements OnInit {
       // console.log('Selected file:', selectedFile);
 
       // changes beagn from here
-      // ensure you replace any instance of [environment.cloud_name] with your clodinary cloud_name
+      // ensure you replace any instance of [environment.cloud_name] with your cloudinary cloud_name
       const formData = new FormData()
       formData.append("file", selectedFile)
       formData.append("upload_preset", "shopie")

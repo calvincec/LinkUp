@@ -23,7 +23,7 @@ Content-Type: application/json
 ### ## Updating user details
 PUT  http://localhost:4600/user/updateuser/127b0227-57e0-415e-8f75-f1f81827b047
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5NDUzMzE5OX0.DFtnQxQG0_7Oij2s9uwme95QEdfvEukmakVS4k5n44A
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDk3ODQyMSwiZXhwIjoxNjk1MDE0NDIxfQ.f3IR9hZj5lAfY-ZqSR3gmPXJ1jlww4ji_ljujP_VVRk
 
 {
     "username": "james",
@@ -32,9 +32,27 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0OTcxOTksImV4cCI6MTY5
     "bio": "je"
 }
 
+### CHANGE PASSWORD
+PUT  http://localhost:4600/user/changepwd/calyndemo16@gmail.com
+Content-Type: application/json
+
+{
+    "password": "12345678"
+}
+
+###get token
+
+
 ###Get all users except current user
 GET http://localhost:4600/user/otherusers/62015153-c214-4c99-9f4a-108c7695f52c
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+
+### GET ONE USER
+GET http://localhost:4600/user/one/62c7c30c-05fa-45ab-9c2f-be40fcf42cff
+
+
+### CHECK EMAIL
+GET http://localhost:4600/user/checkemail/mwai@gmail.com
 
 ###     SOFT DELETE USER
 PUT http://localhost:4600/user/delete/f5edb98b-9e33-4689-8380-b01215280287
@@ -106,7 +124,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5
 ### SOFT DELETE POST
 PUT http://localhost:4600/post/delete/2931d7e6-3e87-4c2d-84b7-0b7e5cc8bca2
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQ0MzE1NDcsImV4cCI6MTY5NDQ2NzU0N30.o5Mon8IqiCDgptUNDAAoCpJwNA42HzqQ0Yz7VD7Dq2Y
+
 
 ###UPDATE POST
 PUT  http://localhost:4600/post/update/0dfb8e3b-07e7-4707-b38a-fc109d22f615
@@ -198,5 +216,7 @@ GET http://localhost:4600/user/tokencheck
 Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiJiMDcxZDczZS05YzBkLTQ0NjMtOTg2YS03NGM3ZjhmODk1NTciLCJwcm9maWxlcGljIjpudWxsLCJiaW8iOm51bGwsInVzZXJuYW1lIjoiQ2FsdmluY2UgTmRlbW8iLCJlbWFpbCI6ImNhbHluZGVtbzE2QGdtYWlsLmNvbSIsImNyZWF0ZWRhdCI6IjIwMjMtMDktMTJUMTU6NTI6MTYuNzMwWiIsImlhdCI6MTY5NDc4NTU4MiwiZXhwIjoxNjk0ODIxNTgyfQ.Ysxm8X96WbfAR14iDe6Tuhcshjh_trWmYZlz69nj-ic
 
-  
+###
+PUT http://localhost:4600/reset/calyndemo16@gmail.com
+Content-Type: application/json
 

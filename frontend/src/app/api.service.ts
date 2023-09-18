@@ -37,6 +37,16 @@ interface anyComments{
 interface useridv{
   userid: any
 }
+interface updateDetails{
+  username: string
+  email: string
+  profilepic: any
+  bio: any
+}
+
+interface password{
+  password: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -54,8 +64,6 @@ export class ApiService {
   // headers2 = new HttpHeaders({
   //   'Content-Type': 'application/json'
   // })
-  userid = localStorage.getItem('userid')
-
   LoginService(details: credentials){
     return this.http.post('http://localhost:4600/user/login', details)
   }
@@ -79,7 +87,11 @@ export class ApiService {
   }
 
   getTokendet(): Observable<any>{
-    const headers: any = this.headers
+    this.token = localStorage.getItem('token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': `${this.token}` // Assuming the token is a Bearer token
+    });
     
     return this.http.get('http://localhost:4600/user/tokencheck', { headers })
   }
@@ -130,5 +142,41 @@ export class ApiService {
   unfollow(details: followerUserId){
     const headers: any = this.headers
     return this.http.put("http://localhost:4600/user/unfollow", details, { headers })
+  }
+
+  updateUser(details: updateDetails, userid: string){
+    const headers: any = this.headers
+    return this.http.put(`http://localhost:4600/user/updateuser/${userid}`, details, { headers })
+  }
+  deletePost(postid: any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`http://localhost:4600/post/delete/${postid}`, { headers })
+  }
+  deleteComment(commentid: any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`http://localhost:4600/comment/delete/${commentid}`, { headers })
+  }
+  getOneuser(userid: any){
+
+    return this.http.get(`http://localhost:4600/user/one/${userid}`)
+  }
+  checkEmail(email: any){
+    return this.http.get(`http://localhost:4600/user/checkemail/${email}`)
+  }
+  sendEmailAndgetCode(email: any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`http://localhost:4600/reset/${email}`, {headers})
+  }
+  changepws(email: any, details: password){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`http://localhost:4600/user/changepwd/${email}`, details, {headers})
   }
 }

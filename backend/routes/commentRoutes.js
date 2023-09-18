@@ -7,7 +7,7 @@ const { tokenVerfying } = require('../Middleware/verifyToken');
 const commentRouter = Router()
 
 commentRouter.post('/new',tokenVerfying, newComment)
-commentRouter.put('/delete/:commentid',tokenVerfying, deleteComment)
+commentRouter.put('/delete/:commentid', deleteComment)
 commentRouter.get('/pcid/:id', getComment)
 commentRouter.post('/like',tokenVerfying, likeComment)
 // commentRouter.delete('/unlike/:likeid', tokenVerfying, unlikeComment)

@@ -1,12 +1,13 @@
 <div class="people">
     <div class="person" *ngFor="let person of followers">
         <div class="profilepic">
-            <img src="../assets/person.jpeg" alt="profile pic" class="profilepicimg">
+            <img *ngIf="person.profilepic!=null" [src]="person.profilepic" alt="profile pic" class="profilepicimg">
+            <img *ngIf="person.profilepic==null" [src]="'../assets/logo.png'" alt="profile pic" class="profilepicimg">
         </div>
         <div class="profilewords">
-            <p class="name">John Doe {{person}}</p>
-            <p class="email">calyndemo16@gmail.com</p>
-            <p class="bio">It is how you define</p>
+            <p class="name">{{person.username}}</p> 
+            <p class="email">{{person.email}}</p>
+            <p class="bio">{{person.bio}}</p>
         </div> 
     </div>
     <!-- <div class="person">

@@ -1,0 +1,59 @@
+.emailsent{
+
+}
+
+.change{
+    background-color: white;
+    width: 70%;
+    margin: 0 auto;
+    height: 40vh;
+    margin-top: 20vh;
+    border-radius: 5px;
+}
+#code{
+    width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    border: solid black;
+    outline: none;
+    margin-left: 10%;
+}
+.form>label{
+    margin-left: 10%;
+}
+.changepwd{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.changepwd>input{
+    width: 60%;
+    padding: 20px;
+    border-radius: 5px;
+    border: solid black;
+    outline: none;
+    margin-top: 40px;
+}
+.errorMsg{
+    margin-left: 10%;
+}
+
+.butons{
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+.butons>button{
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #202044;
+    color: white;
+}
+.butons>button:hover{
+    background-color: #FF851B;
+    cursor: pointer;
+}

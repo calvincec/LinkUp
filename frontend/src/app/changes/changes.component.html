@@ -1,1 +1,39 @@
-<p>changes works!</p>
+<div class="change">
+    <div class="errorMsg" [style.color]="color">
+        {{errorMsg}}
+    </div>
+    <div class="emailsent" [style.display]="emaildisplay">
+        <form class="form" [formGroup]="codeform"  (ngSubmit)="onSubmitCode(codeform, email)">
+            <label for="">A code has has been sent to your email. It may take time for the code to be processed kindly enter the code to proceed <br><br></label>
+            <input type="text" name="" id="code" formControlName="code">
+            <br>
+            <div class="butons">
+                <button (click)="quit(codeform)">quit</button>
+                <button type="submit">submit</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="emailsent" [style.display]="emaildisplay2">
+        <form class="form" [formGroup]="emailform"  (ngSubmit)="onSubmitEmail(emailform)">
+            <label for="">Kindly enter the email to proceed <br><br></label>
+            <input type="email" name="" id="code" formControlName="email">
+            <br>
+            <div class="butons">
+                <button (click)="quit(emailform)">quit</button>
+                <button type="submit">submit</button>
+            </div>
+        </form>
+    </div>
+    
+    <form class="changepwd" [style.display]="changepwddisplay" [formGroup]="passform"  (ngSubmit)="onSubmitPass(passform)">
+        
+        <input type="password" name="" id="new" placeholder="enter new password" formControlName="password">
+        <input type="password" name="" id="con"placeholder='confirm new password' formControlName="cpasword">
+        <div class="butons">
+            <button (click)="quit(codeform)">quit</button>
+            <button type="submit">submit</button>
+        </div>
+    </form>  
+</div>
