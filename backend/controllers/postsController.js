@@ -8,7 +8,7 @@ const { newPostValidator, updatePostValidator } = require('../Validators/allVali
 // const { likePostValidator } = require('../Validators/userValidator');
 
 
-
+ 
 const newPost = async(req,res)=>{
     try {
         const { userid, postwords, postpic} = req.body
@@ -26,7 +26,7 @@ const newPost = async(req,res)=>{
         .input('postwords', mssql.VarChar, postwords)
         .input('postpic', mssql.VarChar, postpic)
         .execute('newPostProc')
-
+ 
         if(out.rowsAffected==1){  
             return res.status(200).json({
                 message: "post added successfully",
@@ -36,9 +36,6 @@ const newPost = async(req,res)=>{
         }
 
     } catch (error) {
-        if (error.message.includes('FOREIGN KEY')) {
-            return res.status(404).json({ error: "The user does not exist in our records" });
-        }
         if (error.code.includes('EPARAM')) {
             return res.status(404).json({ error: "Kindly input the correct parameters" });
         }
@@ -66,6 +63,7 @@ const getAllPosts = async(req, res)=>{
 const getOnePost = async (req,res)=>{
     try {
         const postid = req.params.postid
+        // console.log(req.body);
         const { userid } = req.body
         const pool  = await mssql.connect(sqlConfig)
         let out = await (pool.request()
@@ -152,6 +150,7 @@ const updatePost = async(req,res)=>{
     }
 }
 
+//likes or unlikes a post
 const likePost = async(req,res)=>{
     try {
         const {postid, userid} = req.body
@@ -195,7 +194,7 @@ const likePost = async(req,res)=>{
         // return res.status(500).json({ error: 'Internal server error' }); 
     }
 }
-
+ 
 // const unlikePost = async(req,res)=>{
 //     try {
 //         const likeid = req.params.likeid

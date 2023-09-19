@@ -7,7 +7,7 @@ CREATE TABLE "posts"(
     "isdeleted" BIT DEFAULT 0
 );
 
-
+SELECT * from posts
 CREATE TABLE "commentlikes"(
     "likeid" VARCHAR(255) PRIMARY KEY NOT NULL,
     "commentid" VARCHAR(255) NULL,
@@ -26,7 +26,7 @@ CREATE TABLE "users"(
     "isdeleted" BIT DEFAULT 0
 );
 
-select * from users
+select * from follow
 CREATE TABLE "postlikes"(
     "likeid" VARCHAR(255) PRIMARY KEY NOT NULL,
     "postid" VARCHAR(255) NOT NULL,

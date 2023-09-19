@@ -6,8 +6,8 @@ const updateuserValidator=joi.object({
         'username.empty':'Please Input Your user name with length 5 to 20' }),
         
     email:joi.string().lowercase().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
-    bio:joi.string(),
-    profilepic:joi.string()
+    bio:joi.string().allow(null).empty(''),
+    profilepic:joi.string().allow(null).empty('')
 })
 
 const newuserValidator=joi.object({

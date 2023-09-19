@@ -2,13 +2,11 @@ const mssql = require('mssql');
 const {v4} = require('uuid');
 const { sqlConfig } = require('../Config/config');
 
-
+ 
 const newComment = async(req,res)=>{
     try {
         const commentid = v4()
         const {postid, commentbdy, userid, parentcomment} = req.body
-
-        
 
         const pool  = await mssql.connect(sqlConfig)
         const out = await pool.request()
@@ -119,26 +117,7 @@ const likeComment = async(req,res)=>{
     }
 }
 
-// const unlikeComment = async(req,res)=>{
-//     try {
-//         const likeid = req.params.likeid
 
-//         const pool  = await mssql.connect(sqlConfig)
-//         let out = await pool.request()
-//         .input('likeid', mssql.VarChar, likeid)
-//         .execute('unlikeCommentProc')
-
-//         if(out.rowsAffected==1){  
-//             return res.status(200).json({
-//                 message: "comment disLiked successfully",
-//             })}
-//         else{
-//                 return res.status(400).json({message: "The like is not found"})
-//         }
-//     } catch (error) {
-//         return res.status(500).json({ error: 'Internal server error' }); 
-//     }
-// }
 
 const allikesComment = async(req,res)=>{
     try {

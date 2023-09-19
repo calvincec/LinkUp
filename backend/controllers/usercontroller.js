@@ -32,7 +32,6 @@ const newuser = async(req,res)=>{
 
         const hashedPwd = await bcrypt.hash(password, 5)
         const pool  = await mssql.connect(sqlConfig)
-        if(pool.connected){
             
             const out = await pool.request()
             .input('userid', mssql.VarChar, userid)
@@ -51,7 +50,7 @@ const newuser = async(req,res)=>{
                     return res.status(400).json({error: "User not registered successfully"})
             }
             
-        }
+        
     } catch (error) {
         
         if (error.message.includes('Violation of UNIQUE KEY')) {
@@ -195,7 +194,6 @@ const updateuser = async(req,res)=>{
 
         const userid = req.params.userid
         const pool  = await mssql.connect(sqlConfig)
-        if(pool.connected){
             const out = await pool.request()
             .input('userid', mssql.VarChar, userid)
             .input('profilepic', mssql.VarChar, profilepic)
@@ -212,7 +210,7 @@ const updateuser = async(req,res)=>{
             else{
                     return res.status(400).json({error: "The user you have entered does not exist"})
             }
-        }
+        
    
     } catch (error) {
         if (error.message.includes('Violation of UNIQUE KEY')) {
@@ -244,14 +242,13 @@ const otherUsers = async(req,res)=>{
     try {
         const userid = req.params.userid
         const pool  = await mssql.connect(sqlConfig)
-        if(pool.connected){
             const out = await pool.request()
             .input('userid',userid)
             .execute('otherUsersProc');
             
             const otherusers = out.recordset
             return res.status(200).json({otherusers: otherusers})
-        }
+        
     } catch (error) {
         return res.status(500).json({ error: 'Internal server error' });
     }
@@ -404,7 +401,7 @@ const checkToken = async(req,res)=>{
         })
     }
     else{
-        return res.json({
+        return res.status(400).json({
             error: "nothing found"
         })
     }
