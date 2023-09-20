@@ -2,7 +2,7 @@
     <div class="navbar"><app-navbar class="navbarc"></app-navbar></div>
     <div class="onepostbody">
         <div class="header" >
-            <img (click)="back()" src="../assets/arrow.svg"> post</div>
+            <img (click)="back()" src="../assets/arrow.svg" class="backpic"> post</div>
         <div class="postbody">
             
             <div class="profilepic profilepicm">
@@ -76,7 +76,7 @@
 
                                 <!-- <img src="../assets/person.jpeg" alt="profile pic" class="profilepicimg profilepicimg2"> -->
                             </div>
-                            <div class="innercommentbody">
+                            <div class="innercommentbody"> 
                                 <div class="innerheader">
                                     <p class="username usernamem">{{inneritem.username}}</p>
                                     <svg *ngIf="inneritem.curuserliked!=null" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#FF851B" stroke="#FF851B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="elypsis elypsis2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>

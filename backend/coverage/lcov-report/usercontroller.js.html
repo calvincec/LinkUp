@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.71% </span>
+                <span class="strong">72.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>276/420</span>
+                <span class='fraction'>303/420</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.73% </span>
+                <span class="strong">69.86% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>145/205</span>
+                <span class='fraction'>153/219</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.35% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>43/62</span>
+                <span class='fraction'>45/63</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.71% </span>
+                <span class="strong">72.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>276/420</span>
+                <span class='fraction'>303/420</span>
             </div>
         
             
@@ -624,34 +624,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1042,43 +1042,43 @@ const changepwd = async(req,res)=&gt;{
 <span class="cstat-no" title="statement not covered" >        return res.json({Error: error})</span>
     }
 }
-const loginuser = <span class="fstat-no" title="function not covered" >async(req,res)=&gt;{</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        const {email, password} = req.body</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const {error}=loginuserValidator.validate(req.body)</span>
-<span class="cstat-no" title="statement not covered" >        if(error){</span>
+const loginuser = async(req,res)=&gt;{
+    try {
+        const {email, password} = req.body
+&nbsp;
+        const {error}=loginuserValidator.validate(req.body)
+        if(error<span class="branch-0 cbranch-no" title="branch not covered" >){</span>
 <span class="cstat-no" title="statement not covered" >            return res.status(422).json({error: error.details[0].message})</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const pool  = await mssql.connect(sqlConfig)</span>
-<span class="cstat-no" title="statement not covered" >        const user = (await pool.request().input('email', mssql.VarChar, email).execute('userLogin')).recordset[0]</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // console.log(user);</span>
-<span class="cstat-no" title="statement not covered" >        </span>
-<span class="cstat-no" title="statement not covered" >        </span>
-<span class="cstat-no" title="statement not covered" >        if(user){</span>
-<span class="cstat-no" title="statement not covered" >            const hashedPwd = user.password</span>
-<span class="cstat-no" title="statement not covered" >            const comparePwd = await bcrypt.compare(password, hashedPwd)</span>
-<span class="cstat-no" title="statement not covered" >            if(comparePwd){</span>
-<span class="cstat-no" title="statement not covered" >                const {password, isdeleted,...payload}=user  </span>
-<span class="cstat-no" title="statement not covered" >                const {userid} = user</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >                const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000s'}) </span>
-<span class="cstat-no" title="statement not covered" >                // console.log(payload);</span>
-<span class="cstat-no" title="statement not covered" >                return res.status(200).json({</span>
-<span class="cstat-no" title="statement not covered" >                    userid: userid,</span>
-<span class="cstat-no" title="statement not covered" >                    message : "Logged in",</span>
-<span class="cstat-no" title="statement not covered" >                    token</span>
-<span class="cstat-no" title="statement not covered" >                })</span>
-<span class="cstat-no" title="statement not covered" >            }else{</span>
+        }
+&nbsp;
+        const pool  = await mssql.connect(sqlConfig)
+        const user = (await pool.request().input('email', mssql.VarChar, email).execute('userLogin')).recordset[0]
+&nbsp;
+        // console.log(user);
+        
+        
+        if(user<span class="branch-0 cbranch-no" title="branch not covered" >){</span>
+            const hashedPwd = user.password
+            const comparePwd = await bcrypt.compare(password, hashedPwd)
+            if(comparePwd<span class="branch-0 cbranch-no" title="branch not covered" >){</span>
+                const {password, isdeleted,...payload}=user  
+                const {userid} = user
+&nbsp;
+                const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000s'}) 
+                // console.log(payload);
+                return res.status(200).json({
+                    userid: userid,
+                    message : "Logged in",
+                    token
+                })
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >            }else{</span></span>
 <span class="cstat-no" title="statement not covered" >                return res.status(400).json({</span>
 <span class="cstat-no" title="statement not covered" >                    error: 'Wrong password'</span>
 <span class="cstat-no" title="statement not covered" >                })</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >            }</span></span>
 <span class="cstat-no" title="statement not covered" >        }else{</span>
 <span class="cstat-no" title="statement not covered" >            return res.status(400).json({error: "Email does not exist in our current records, consider registering"})</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >        }</span></span>
 <span class="cstat-no" title="statement not covered" >        </span>
 <span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
 <span class="cstat-no" title="statement not covered" >        return res.status(404).json({error: 'kindly input the right credentials'})</span>
@@ -1327,7 +1327,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-09-19T14:00:15.949Z
+                at 2023-09-20T12:36:25.573Z
             </div>
         <script src="prettify.js"></script>
         <script>

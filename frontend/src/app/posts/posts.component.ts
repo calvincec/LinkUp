@@ -22,7 +22,7 @@ export class PostsComponent {
   constructor(private api: ApiService, private router: Router) {
     this.setposts()
   }
-
+ 
 
   setposts(){
     const userid = localStorage.getItem('userid')
@@ -50,7 +50,7 @@ export class PostsComponent {
         // console.log(this.posts);
         
       } else {
-        console.error('Invalid API response format');
+        console.warn('Invalid API response format');
       }
     });
   }
@@ -62,8 +62,11 @@ export class PostsComponent {
       userid : userid,
       postid: postid
     }
+
+    console.log(obj);
+    
     this.api.like(obj).subscribe((res: any)=>{
-      console.log(res.likeid);
+      console.log(res);
       
       if(res.likeid){
         if(res.likeid.length!=0){

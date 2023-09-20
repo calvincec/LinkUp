@@ -15,7 +15,7 @@ module.exports.tokenVerfying = async(req,res,next)=>{
         }
         
     } catch (error) {
-        res.json({Error: error.message})
+        res.json({Error: error.message}) 
     }
     
 }

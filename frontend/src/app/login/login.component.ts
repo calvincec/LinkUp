@@ -91,8 +91,10 @@ export class LoginComponent implements OnInit{
             this.alertMsg=''
             this.clr = 'red'
             form.reset()
-            this.router.navigate(['/posts']);
+            
           }, 1000);
+          
+          this.router.navigate(['/posts']);
 
         }else{
           this.alertMsg = 'Invalid Credentials'

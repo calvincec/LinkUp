@@ -8,7 +8,7 @@ describe('Checking Token', () => {
     it('should get the token', async () => {
         jwt.verify.mockReturnValue({ userID: '1234' });
 
-        const req = {
+        const req = { 
             headers: { token: 'valid_token' },
         };
         const res = {

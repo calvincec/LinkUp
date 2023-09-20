@@ -2,7 +2,7 @@ import mssql from 'mssql'
 import {v4 as uuid} from 'uuid';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { changepwd, checkEmail, checkToken, deleteUser, followUser, following, newuser, otherUsers, peopleymk, unfollow, updateuser, userViewAllFollowers } from '../controllers/usercontroller';
+import { changepwd, checkEmail, checkToken, deleteUser, followUser, following, loginuser, newuser, otherUsers, peopleymk, unfollow, updateuser, userViewAllFollowers } from '../controllers/usercontroller';
 
 const res = {
     status: jest.fn().mockReturnThis(),
@@ -76,11 +76,42 @@ describe('add new user', ()=>{
     })
 })
 
-// describe('Log in user', ()=>{
-//     it('should log in user successfully', =>{
+describe('Log in user', ()=>{
+    const req = {
+        body: {
+            email: 'email@google.com',
+            password: '12345678'
+        }
+    }
+    const user = {
+        password: '12345678',
+        userid: 'dkshkdshdhs'
+    }
+    it('should log in user successfully', async()=>{
+        jest.spyOn(mssql, "connect").mockResolvedValueOnce({
+            request: jest.fn().mockReturnThis(),
+            input: jest.fn().mockReturnThis(),
+            execute: jest.fn().mockResolvedValueOnce({
+              rowsAffected: 1,
+              recordset: [user],
+            }),
+          });
 
-//     })
-// })
+        jest.spyOn(bcrypt, "compare").mockResolvedValueOnce(true);
+        jest.spyOn(jwt, "sign").mockReturnValueOnce("mockedToken");
+
+        await loginuser(req,res)
+
+        expect(res.json).toHaveBeenCalledWith({
+            userid: user.userid,
+            message: "Logged in",
+            token: "mockedToken"
+        })
+        expect(res.status).toHaveBeenCalledWith(200)
+
+
+    })
+})
 
 describe('Checkemail', ()=>{
     it("should find an email successfully", async()=>{

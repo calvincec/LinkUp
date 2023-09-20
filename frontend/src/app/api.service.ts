@@ -97,7 +97,7 @@ export class ApiService {
   }
   like(details: postUserId){
     const headers: any = this.headers
-    return this.http.post('http://localhost:4600/post/like', details, { headers })
+    return this.http.post('http://localhost:4600/post/like', details)
   }
   likeComment(details: commentUserId){
     const headers: any = this.headers
