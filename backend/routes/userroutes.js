@@ -6,7 +6,7 @@ const userrouter = Router()
 
 userrouter.post('/register', newuser);
 userrouter.post('/login', loginuser);
-userrouter.put('/updateuser/:userid',tokenVerfying, updateuser);
+userrouter.put('/updateuser/:userid', updateuser);
 userrouter.get('/otherusers/:userid',tokenVerfying, otherUsers);
 userrouter.put('/delete/:userid',tokenVerfying,deleteUser)
 userrouter.post('/follow',tokenVerfying, followUser)

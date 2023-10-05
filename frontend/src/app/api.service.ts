@@ -145,13 +145,17 @@ export class ApiService {
   }
 
   updateUser(details: updateDetails, userid: string){
-    const headers: any = this.headers
+    // const headers: any = this.headers
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
     return this.http.put(`http://localhost:4600/user/updateuser/${userid}`, details, { headers })
   }
   deletePost(postid: any){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+
     return this.http.put(`http://localhost:4600/post/delete/${postid}`, { headers })
   }
   deleteComment(commentid: any){
